@@ -32,18 +32,8 @@ Route::post('/Table', [FormExample::class,'show']);
 Route::get('/TableDelete', [FormExample::class,'DeleteBocha']);
 
 Route::view('/update' ,'update');
-Route::post('/Tableupdate', [FormExample::class,'update']);
+Route::post('/Tableupdate', [FormExample::class,'updateuser']);
 
-Route::view('/table' ,'table');
-Route::post('/tablerecord', [FormExample::class,'table']);
-
-Route::view('/tableapi' ,'tableapi');
-Route::get('/studentrecord', [FormExample::class,'studentrecord']);
-
-Route::view('/Ajax' ,'Ajax');
-Route::get('/Ajax', [AJAXController::class,'show']);
-
-//Route::view('/AlertDemo' ,'Alerts');
 
 Route::get('/Alerts', function () {
     return view('Alerts');
@@ -61,4 +51,8 @@ Route::get('/subscription', function () {
     return view('renewsubscription');
 });
 
+
+Route::get('/PaginationTable', function () {
+    return view('pagination');
+});
 

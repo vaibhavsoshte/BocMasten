@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormExample;
+use app\http\Controllers\AJAXController;
 
 
 /*
@@ -19,10 +20,31 @@ use App\Http\Controllers\FormExample;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
- Route::get('/studentrecord', [FormExample::class,'studentrecord']);
 
- Route::get('/tablerecord1', [FormExample::class,'tablerecord1']);
+ Route::get('/user', [FormExample::class,'show']);
 
  Route::get('/subscription', [FormExample::class,'fetchAllsubscription']);
+
+ Route::get('/DeleteBocha', [FormExample::class,'DeleteBocha']);
+
+ Route::post('/adduser', [FormExample::class,'saveuser']);
+
+ Route::get('/update', [FormExample::class,'update']);
+
+// Route::post('/update', [FormExample::class,'update']);
+
+ Route::post('/updateuser', [FormExample::class,'updateuser']);
+
+
+ 
+
+
+ //Route::get('/curl', [FormExample::class,'DeleteBocha']);
+
+ Route::get('/curlexample', function () {
+    return view('curl');
+});
+
+Route::get('/pagination', [FormExample::class,'paginationdata']);
 
 

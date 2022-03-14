@@ -11,18 +11,18 @@ class FormExample extends Controller
 
      // Insert Query
 
-    public function saveuser(Request $request)
+    public static function saveuser(Request $request)
     {
         // dd($request);
-
+        //$email=$request->post('email');
         $email=$request->post('email');
         $password=$request->post('password');
         //$id=$request->post('id');
         $dbInsertStatusQuestion=DB::insert('INSERT INTO user (email, password) values (?,?)', [$email,$password]);
 
-         if($dbInsertStatusQuestion)
+         if($dbInsertStatusQuestion==1)
            {
-             echo "<script>alert('Inserted Successfully');</script>";
+             echo "Inserted Successfully";
            }
             else
              {
@@ -46,45 +46,70 @@ class FormExample extends Controller
 
          public static function DeleteBocha(Request $request)
          {
-             $dtro=$request->email;
+             $dtro=$request->post('id');
 
-             $finalResult = DB::delete("DELETE FROM user WHERE email=?",[$dtro]);
-             //To chect if the query executed properly you may use the following syntax
-            if($finalResult == 1)
-            {
-           //SUCCESS
-             // echo "<script>alert('Record Delete Successfully');</script>";
-              return redirect('/Tablerecord');
+             if(isset($dtro))
+             {
+              $finalResult = DB::delete("DELETE FROM user WHERE id=?",[$dtro]);
+              //To chect if the query executed properly you may use the following syntax
+             if($finalResult == 1)
+             {
+            //SUCCESS
+               echo "Record Delete Successfully";
+               //return redirect('/Tablerecord');
+ 
+ 
+             } else
+             {
+              //ERROR
+              echo "Error in Delete Record ";
+ 
+             }
+               
+             }
+             else
+             {
+                echo "No id Found";
 
+             }
 
-            } else
-            {
-             //ERROR
-            }
+             
 
         }
 
            // update Query
 
-        public function update(Request $request)
+        public static function update(Request $request)
         {
 
-            $id=$request->id;
-            $email=$request->email;
+            $id=$request->userid;
+            $email=$request->bla;
             $password=$request->password;
 
-            $finalResult= DB::update("UPDATE user set email = '$email', password ='$password' where id = $id");
-            if($finalResult == 1)
-            {
-           //SUCCESS
-              echo "<script>alert('Record Update Successfully');</script>";
-              return redirect('/Tablerecord');
-
-
-            } else
-            {
-             //ERROR
-            }
+            //echo $id;
+            //echo "$email";
+            //echo "$password";
+         
+          
+            $finalResult= DB::update("UPDATE `user` SET `email`='$email',`password`='$password' WHERE id='$id'");
+            //echo $id;
+            echo $email;
+            echo $finalResult;
+             if($finalResult == 1)
+             {
+            
+               echo "Record Update Successfully.......";
+               //return redirect('/Tablerecord');
+ 
+ 
+             } else
+             {
+              
+              echo "Error Update record...........";
+  
+             }
+          
+          
         }
         public static function table()
         {
@@ -180,6 +205,33 @@ class FormExample extends Controller
            // echo  $finalResult;
             return view('subscriptiontable');
           }
+      }
+
+      public function paginationdata(Request $request)
+      {
+         // $user = Employee::paginate(8);
+         $users = DB::table('user')->paginate(3);
+         //return view('pagination', compact('users'));
+         
+          return $users;
+      }
+
+      public static function updateuser(Request $request)
+      {
+         $id=$request->id;
+         $email=$request->email;
+         $password=$request->password;
+         
+        $updateuser = DB::update("UPDATE `user` SET `email`='$email',`password`='$password' WHERE `id`= '$id'");
+        
+        if($updateuser==1)
+        {
+            echo "Updating Record Succefully";
+        }
+         else
+         {
+            echo " Error in Updating............";
+         }
       }
 
 }
