@@ -15,7 +15,7 @@ use App\Http\Controllers\AJAXController;
 |
 */
 
-Route::get('/welcome', function () {
+Route::get('/', function () {
     return view('welcome');
 });
 
@@ -25,7 +25,7 @@ Route::get('/form', function () {
 
 Route::view('formData' ,'form');
 
-Route::post('/form1', [FormExample::class,'saveques']);
+Route::post('/form1', [FormExample::class,'saveuser']);
 Route::view('Tablerecord' ,'Tablerecord');
 
 Route::post('/Table', [FormExample::class,'show']);
@@ -43,7 +43,11 @@ Route::get('/studentrecord', [FormExample::class,'studentrecord']);
 Route::view('/Ajax' ,'Ajax');
 Route::get('/Ajax', [AJAXController::class,'show']);
 
-Route::view('/AlertDemo' ,'Alerts');
+//Route::view('/AlertDemo' ,'Alerts');
+
+Route::get('/Alerts', function () {
+    return view('Alerts');
+});
 
 // sandip sir project db ctappdb Route //
 

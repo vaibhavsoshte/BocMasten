@@ -17,8 +17,8 @@ class FormExample extends Controller
 
         $email=$request->post('email');
         $password=$request->post('password');
-        $id=$request->post('id');
-        $dbInsertStatusQuestion=DB::insert('INSERT INTO Form (id, email, password ) values (?,?,?)', [$id,$email,$password]);
+        //$id=$request->post('id');
+        $dbInsertStatusQuestion=DB::insert('INSERT INTO user (email, password) values (?,?)', [$email,$password]);
 
          if($dbInsertStatusQuestion)
            {
@@ -36,7 +36,7 @@ class FormExample extends Controller
 
         public static function show()
          {
-             $Data=DB::select('select * from Form');
+             $Data=DB::select('select * from user');
             // dd($Data);
              return $Data;
 
@@ -44,16 +44,16 @@ class FormExample extends Controller
 
                 //Delete Query
 
-         public function DeleteBocha(Request $request)
+         public static function DeleteBocha(Request $request)
          {
-             $dtro=$request->id;
+             $dtro=$request->email;
 
-             $finalResult = DB::delete("DELETE FROM Form WHERE id=?",[$dtro]);
+             $finalResult = DB::delete("DELETE FROM user WHERE email=?",[$dtro]);
              //To chect if the query executed properly you may use the following syntax
             if($finalResult == 1)
             {
            //SUCCESS
-              echo "<script>alert('Record Delete Successfully');</script>";
+             // echo "<script>alert('Record Delete Successfully');</script>";
               return redirect('/Tablerecord');
 
 
@@ -73,7 +73,7 @@ class FormExample extends Controller
             $email=$request->email;
             $password=$request->password;
 
-            $finalResult= DB::update("UPDATE Form set email = '$email', password ='$password' where id = $id");
+            $finalResult= DB::update("UPDATE user set email = '$email', password ='$password' where id = $id");
             if($finalResult == 1)
             {
            //SUCCESS
