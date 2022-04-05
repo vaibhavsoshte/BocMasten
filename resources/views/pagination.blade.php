@@ -23,7 +23,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($users as $data)
+                @foreach(FormExample::paginationdata() as $data)
                 <tr>
                     <th scope="row">{{ $data->id }}</th>
                     <td>{{ $data->email }}</td>
@@ -33,10 +33,7 @@
                 @endforeach
             </tbody>
         </table>
-        {{-- Pagination --}}
-        <div class="d-flex justify-content-center">
-            {!! $users->links() !!}
-        </div>
+        
     </div>
 </body>
 </html>

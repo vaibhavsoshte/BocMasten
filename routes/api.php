@@ -35,8 +35,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
  Route::post('/updateuser', [FormExample::class,'updateuser']);
 
+ Route::get('/ID', [FormExample::class,'Id']);
 
- 
+ Route::post('/checke', [FormExample::class,'checke']);
+
+ Route::get('/fetchallbranch', [FormExample::class,'fetchallbranch']);
+
+ Route::get('/fetchallstudent', [FormExample::class,'fetchallstudent']);
+
+ Route::post('/updatestatus', [FormExample::class,'updatestatus']);
+
 
 
  //Route::get('/curl', [FormExample::class,'DeleteBocha']);
@@ -46,5 +54,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/pagination', [FormExample::class,'paginationdata']);
+
+Route::get('/norecores', [FormExample::class,'norecores']);
+
+Route::get('/casequery', [FormExample::class,'casequery']);
+
+Route::post('/csvfile', [FormExample::class,'csvfile']);
+
+Route::get('/save', [FormExample::class,'save']);
+
+Route::post('/moveuploadedfile', [FormExample::class,'moveuploadedfile']);
+
+
+
+
 
 

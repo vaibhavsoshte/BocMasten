@@ -39,9 +39,13 @@
                       <tr>
                         <th scope="col">{{ $bocha->id }}</th>
                         <th scope="col">{{ $bocha->email }}</th>
-                        <th scope="col">{{ $bocha->password}}</th>
-                        <th scope="collapse=2"><button  class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal" onclick="myupdate('{{$bocha->id}}','{{$bocha->email}}','{{$bocha->password}}')">Update</button>  <button  class="btn btn-outline-secondary" data-toggle="modal" data-target="#deleteModal"onclick="mydelete('{{$bocha->id}}')">Delete</button></th>
-                       
+                        <th scope="col">{{ $bocha->pass}}</th>
+                        <th scope="collapse=2"><button  class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal" onclick="myupdate('{{$bocha->id}}','{{$bocha->email}}','{{$bocha->pass}}')">Update</button>  <button  class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal"onclick="mydelete('{{$bocha->id}}')">Delete</button> 
+                          @if($bocha->statu =='disabled')         
+                          <td><button class="btn btn-outline-success" disabled>Approved</button></td>         
+                          @else
+                          <td> <button class="btn btn-outline-success" data-toggle="modal" data-target="#approvedModal" onclick="myapproved('{{$bocha->id}}','{{$bocha->email}}','{{$bocha->pass}}')">Pending</button></td>        
+                           @endif</th>
                       </tr>                                              
                        @endforeach
                     </tbody>
@@ -99,6 +103,32 @@
                     
                   </div>
                 </div>
+                <!--- approved --->
+                <div class="modal fade" id="approvedModal" role="dialog">
+                  <div class="modal-dialog">
+                  
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                      <div class="modal-header">
+                       
+                        <h4 class="modal-title"> Approved User</h4>
+                      </div>
+                      <div class="modal-body">
+                        <p id="p" name="p"></p>
+                        <div class="modal-body">
+                         
+                          <input type="" name="id" id="id" value="" ><br><br>
+                          <input type="" name="mail" id="mail" value=""><br><br>
+                          <input type="" name="passwordx" id="passwordx" value="">
+                      </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-default" data-dismiss="modal">Close</button>
+                        <button  class="btn btn-outline-success" id="approved" name="approved">Approved</button> 
+                      </div>
+                    </div>
+                  </div>
+                </div>
             </body>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
             <script type="text/javascript">
@@ -136,14 +166,33 @@
                 //alert(k);
 
              }
+
+             function myapproved(a,b,c) 
+             {
+                var id=a;
+                var email=b;
+                var pass=c;
+
+                console.log(id);
+                console.log(email);
+                console.log(pass);
+
+                $("#id").val(id);
+                $("#mail").val(email);
+                $("#passwordx").val(pass);
+                //alert(k);
+
+             }
              
 
             
               $("#update").click(function() 
               {
+
+              var userid = $("#Id").val();
               var bla = $("#email").val();
               var password = $("#pass").val();
-              var userid = $("#Id").val();
+              
               console.log(bla)
               console.log(password)
               console.log(userid)
@@ -156,8 +205,37 @@
 
               $.ajax({ 
               type:"POST",
-              url:"/Tableupdate",
+              url:"/updateuser",
                data:"id="+userid+"&email="+bla+"&password="+password,
+              //data:{"id":userid,"email":bla,"password":password},
+              success:function(data) 
+              {
+                alert(data);
+                window.location.reload();
+              }
+            }); 
+          });
+
+            $("#approved").click(function() 
+              {
+
+              var id = $("#id").val();
+              var mail = $("#mail").val();
+              var pass = $("#passwordx").val();
+              
+              console.log(id)
+              console.log(mail)
+              console.log(pass)
+              $.ajaxSetup({
+                      headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                      }
+                    });
+
+              $.ajax({ 
+              type:"POST",
+              url:"/updatestatus",
+              data:"id="+id+"&email="+mail+"&password="+pass,
               //data:{"id":userid,"email":bla,"password":password},
               success:function(data) 
               {
@@ -168,7 +246,7 @@
 
           });
 
-  
+        
       
     </script>
 </html>

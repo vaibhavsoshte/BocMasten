@@ -1,8 +1,8 @@
 <?php
 
 // From URL to get webpage contents.
-$url = "https://www.geeksforgeeks.org/";
-//$url = "http://127.0.0.1:8000/Tablerecord/";
+//$url = "https://www.geeksforgeeks.org/";
+$url = "http://127.0.0.1:8000/Tablerecord/";
 
 // Initialize a CURL session.
 $ch = curl_init();
@@ -14,6 +14,8 @@ curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 curl_setopt($ch, CURLOPT_URL, $url);
 
 $result = curl_exec($ch);
+
+curl_close($ch) ;
 
 echo $result;
 

@@ -32,7 +32,7 @@ Route::post('/Table', [FormExample::class,'show']);
 Route::get('/TableDelete', [FormExample::class,'DeleteBocha']);
 
 Route::view('/update' ,'update');
-Route::post('/Tableupdate', [FormExample::class,'updateuser']);
+Route::post('/updateuser', [FormExample::class,'updateuser']);
 
 
 Route::get('/Alerts', function () {
@@ -55,4 +55,35 @@ Route::get('/subscription', function () {
 Route::get('/PaginationTable', function () {
     return view('pagination');
 });
+
+Route::get('/NewStudentRegistration', function () {
+    return view('newstudent');
+});
+Route::post('/newstudent', [FormExample::class,'Id']);
+
+Route::get('/ListofStudent', function () {
+    return view('liststudent');
+
+});
+
+Route::get('/norecores', [FormExample::class,'norecores']);
+
+Route::post('/updatestatus', [FormExample::class,'updatestatus']);
+
+Route::get('/CSVtoArray', function () {
+    return view('csvtoarray');
+});
+
+Route::post('/csvfile', [FormExample::class,'csvfile']);
+
+Route::get('/CSV', function () {
+    return view('csv');
+});
+
+Route::get('/ImageUpload', function () {
+    return view('imageupload');
+});
+
+Route::post('/imagesave', [FormExample::class,'store']);
+
 
