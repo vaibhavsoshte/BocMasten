@@ -9,7 +9,7 @@
     </head>
     <body>
         <div class="container mt-4 col-md-8 pt-4 d-flex justify-content-center" style="border:1px solid #df3f3f;">
-        <form action="loginaction" method="post">
+        <form action="loginaction" name="myForm" method="post" onsubmit="return validateForm()">
             @csrf
             <!--User ID  input -->
             <div class ="col-md-12 d-flex justify-content-center">
@@ -37,5 +37,24 @@
             </div> 
           </form>
         </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+        <script type="text/javascript">
+         function validateForm() 
+         {
+            let x = document.forms["myForm"]["email"].value;
+            let y = document.forms["myForm"]["pass"].value;
+            if (x == "") 
+            {
+               alert("Email must be filled out");
+               return false;
+            }
+            if(y == "")
+            {
+              alert("Password Must Be Required");
+              return false;
+    
+            }
+         }
+        </script>   
     </body>
 </html>
