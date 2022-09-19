@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Form;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class FormExample extends Controller
@@ -34,11 +35,13 @@ class FormExample extends Controller
 
               // Select Query
 
-        public static function show()
+        public function show()
          {
-             $Data=DB::select('select * from user');
-            // dd($Data);
-             return $Data;
+             //$Data=DB::select('select * from user');
+            // return $Data;
+            $data=User::paginate(5);
+            return view('Tablerecord',compact('data'));
+            //return $Data; 
 
          }
 
@@ -211,10 +214,22 @@ class FormExample extends Controller
       public static function paginationdata()
       {
          // $user = Employee::paginate(8);
-         $users = DB::table('user')->paginate(2);
+         $users = DB::table('user')->paginate(4);
          //return view('pagination', compact('users'));
          
           return $users;
+      }
+
+      public static function page()
+      {
+        $data = "vaibhav";
+
+        $array= compact('data');
+
+        return view('test',['data'->$data]);
+
+        //return $array;
+
       }
 
       public static function updateuser(Request $request)
@@ -331,15 +346,15 @@ class FormExample extends Controller
      public static function norecores()
      {
 
-       $norecores=DB::select("SELECT COUNT(id) AS id FROM `studentidtbl`");
+       $norecores=DB::select("SELECT COUNT(id) AS id FROM `user`");
        
        $subval= $norecores[0]->id;
-       $page=Ceil($subval/10);
+       $page=Ceil($subval/4);
         
        return $page;
        //return $subval;
        //return $norecores;
-       //echo $norecores;
+      // echo $page;
 
 
      }
@@ -394,6 +409,8 @@ class FormExample extends Controller
       $input['file'] = "$workImage";
 
       $finalpath=$destinationPath.$workImage;
+
+      //echo $finalpath;
      
     if (($handle = fopen(public_path()."/".$finalpath, "r")) !== FALSE) 
     //if (($handle = fopen($datax, "r")) !== FALSE) 

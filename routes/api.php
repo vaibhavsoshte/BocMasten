@@ -3,7 +3,9 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormExample;
-use app\http\Controllers\AJAXController;
+use App\Http\Controllers\AjaxController;
+use App\Http\Controllers\DateController;
+use App\Http\Controllers\LoginController;
 
 
 /*
@@ -25,7 +27,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
  Route::get('/subscription', [FormExample::class,'fetchAllsubscription']);
 
- Route::get('/DeleteBocha', [FormExample::class,'DeleteBocha']);
+ Route::post('/DeleteBocha', [FormExample::class,'DeleteBocha']);
 
  Route::post('/adduser', [FormExample::class,'saveuser']);
 
@@ -45,7 +47,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
  Route::post('/updatestatus', [FormExample::class,'updatestatus']);
 
+ Route::get('/table', [AjaxController::class,'table']);
 
+ Route::get('/page', [FormExample::class,'page']);
 
  //Route::get('/curl', [FormExample::class,'DeleteBocha']);
 
@@ -64,6 +68,22 @@ Route::post('/csvfile', [FormExample::class,'csvfile']);
 Route::get('/save', [FormExample::class,'save']);
 
 Route::post('/moveuploadedfile', [FormExample::class,'moveuploadedfile']);
+
+
+//date controller
+
+Route::get('/todaydate', [DateController::class,'todaydate']);
+
+Route::post('/validateage', [DateController::class,'validateage']);
+
+Route::post('/dateformatconvertion', [DateController::class,'dateformatconvertion']);
+
+Route::post('/checkdate', [DateController::class,'checkdate']);
+
+Route::post('/login', [LoginController::class,'login']);
+
+Route::get('/StoredProcedure', [DateController::class,'StoredProcedure']);
+
 
 
 

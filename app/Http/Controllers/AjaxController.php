@@ -5,15 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class AJAXController extends Controller
+class AjaxController extends Controller
 {
-    public static function show(Request $request)
+    //
+    public static function table()
     {
-        $Data=DB::select('select * from student');
+        $Data=DB::select('select * from studenttbl');
        // dd($Data);
-       // return $Data;
+        return $Data;
 
-    echo "<table border=5 class=\"table \ border bg-light\">
+   /* echo "<table border=5 class=\"table \ border bg-light\">
     <tr>
      <th>Student ID</th>
      <th>Student Name</th>
@@ -33,13 +34,10 @@ class AJAXController extends Controller
           echo "<td>" .$r->stu_mobile. "</td>" ;
 
 
-      echo "</tr>";
+      echo "</tr>"; */
 
    }
-   echo "</table>";
+   //echo "</table>";
 
     }
-
-  
-
-}
+//}

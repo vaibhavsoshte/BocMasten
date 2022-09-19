@@ -27,6 +27,7 @@
                     <thead>
                         <tr>
                             <th scope="col">ID</th>
+                            <th scope="col">Image</th>
                             <th scope="col">Email Id</th>
                             <th scope="col">Password</th>
                             <th scope="col" colspan="2"> Operation</th>
@@ -35,16 +36,18 @@
                     </thead>
                     <tbody>
 
-                      @foreach (FormExample::show() as $bocha )
+                      @foreach($data as $users)
                       <tr>
-                        <th scope="col">{{ $bocha->id }}</th>
-                        <th scope="col">{{ $bocha->email }}</th>
-                        <th scope="col">{{ $bocha->pass}}</th>
-                        <th scope="collapse=2"><button  class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal" onclick="myupdate('{{$bocha->id}}','{{$bocha->email}}','{{$bocha->pass}}')">Update</button>  <button  class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal"onclick="mydelete('{{$bocha->id}}')">Delete</button> 
-                          @if($bocha->statu =='disabled')         
+                        <th scope="col">{{ $users->id }}</th>
+                        <th scope="col"> <p style="text-align:center;"> <img src="{{asset('/'.$users->image)}}" class="center" alt="image" height="70px" width="70px" ></p></th>
+                        <th scope="col"><p style="text-align:center;">{{ $users->email }}</p></th>
+                        <th scope="col">{{ $users->pass}}</th>
+                       
+                        <th scope="collapse=2"><p style="text-align:center;"><button  class="btn btn-outline-secondary" data-toggle="modal" data-target="#myModal" onclick="myupdate('{{$users->id}}','{{$users->email}}','{{$users->pass}}')">Update</button>  <button  class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal"onclick="mydelete('{{$users->id}}')">Delete</button> </p>
+                          @if($users->statu =='disabled')         
                           <td><button class="btn btn-outline-success" disabled>Approved</button></td>         
                           @else
-                          <td> <button class="btn btn-outline-success" data-toggle="modal" data-target="#approvedModal" onclick="myapproved('{{$bocha->id}}','{{$bocha->email}}','{{$bocha->pass}}')">Pending</button></td>        
+                          <td> <button class="btn btn-outline-success" data-toggle="modal" data-target="#approvedModal" onclick="myapproved('{{$users->id}}','{{$users->email}}','{{$users->pass}}')">Pending</button></td>        
                            @endif</th>
                       </tr>                                              
                        @endforeach

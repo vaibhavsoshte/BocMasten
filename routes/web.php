@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormExample;
 use App\Http\Controllers\AJAXController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,18 @@ Route::get('/form', function () {
     return view('form');
 });
 
+Route::get('/Test', function () {
+    return view('test');
+});
+
+Route::get('/Table', function () {
+    return view('tableapi');
+});
+
+//Route::get('/Tablerecord', function () {
+    //return view('Tablerecord');
+//});
+
 Route::view('formData' ,'form');
 
 Route::post('/form1', [FormExample::class,'saveuser']);
@@ -33,6 +46,10 @@ Route::get('/TableDelete', [FormExample::class,'DeleteBocha']);
 
 Route::view('/update' ,'update');
 Route::post('/updateuser', [FormExample::class,'updateuser']);
+
+Route::get('/AJAX', function () {
+    return view('Ajax');
+});
 
 
 Route::get('/Alerts', function () {
@@ -86,4 +103,19 @@ Route::get('/ImageUpload', function () {
 
 Route::post('/imagesave', [FormExample::class,'store']);
 
+Route::get('/Login', function () {
+    return view('LoginPage');
+});
+
+Route::get('/UserHome', function () {
+    return view('home');
+});
+
+Route::group(['middleware'=>"web"],function()
+{
+    Route::post('/loginaction', [LoginController::class,'login']);
+
+    Route::get('/logoutaction', [LoginController::class,'logout']);
+
+});
 

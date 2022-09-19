@@ -1,6 +1,6 @@
 @php
 
-    use App\Http\Controllers\FormExample;
+    use App\Http\Controllers\AjaxController;
 
 @endphp
 <html>
@@ -28,7 +28,7 @@
                     </thead>
                     <tbody>
 
-                      @foreach (AJAXController::show() as $bocha )
+                      @foreach (AjaxController::table() as $bocha )
                       <tr>
                         <th scope="col">{{$bocha->stu_id}}</th>
                         <th scope="col">{{$bocha->stu_name}}</th>

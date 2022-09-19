@@ -23,14 +23,8 @@
 <div>
 <!---- table --->
 <table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Student ID</th>
-            <th scope="col">Student Name</th>
-            <th scope="col">Email ID</th>
-            <th scope="col">Mobile No</th>
-          </tr>
-    </thead>
+    
+</table>
 
     <tbody>
      <script type='text/javascript'>
@@ -40,13 +34,13 @@
         // $('#option5').addClass("optionvsmnote");
 
                 $.ajax({
-                url: 'Ajax',
-                type: 'get',
+                url:'/AJAX',
+                type:'get',
                 success: function(data)
                     {
-			         alert(data);
+			         //alert(data);
 			         $('#table').html(data);
-                        ;
+                        
                     }
 
 
