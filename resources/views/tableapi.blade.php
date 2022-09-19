@@ -1,6 +1,6 @@
 @php
 
-    use App\Http\Controllers\FormExample;
+    use App\Http\Controllers\AjaxController;
 
 @endphp
 <html>
@@ -28,7 +28,7 @@
                     </thead>
                     <tbody>
 
-                      @foreach (AJAXController::show() as $bocha )
+                      @foreach (AjaxController::table() as $bocha )
                       <tr>
                         <th scope="col">{{$bocha->stu_id}}</th>
                         <th scope="col">{{$bocha->stu_name}}</th>
@@ -36,6 +36,8 @@
                         <th scope="col">{{$bocha->stu_mobile}}</th>
                        <th scope="col"><a href="/update?stu_id={{$bocha->stu_id}}& stu_email={{$bocha->stu_email}} & stu_mobile={{$bocha->stu_mobile}}"> <button  type="\button\class=\btn btn-primary\">Update</button> </a> </th>
                         <th scope="col"><a href="/TableDelete?stu_email={{ $bocha->stu_email }}"> <button  type="\button\class=\btn btn-primary\">Delete </button> </a></th>
+                        <th scope="col"><button  type="\button\class=\btn btn-success\">Approved</button></th>
+
 
                       </tr>
 

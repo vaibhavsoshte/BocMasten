@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormExample;
 use App\Http\Controllers\AJAXController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +16,7 @@ use App\Http\Controllers\AJAXController;
 |
 */
 
-Route::get('/welcome', function () {
+Route::get('/', function () {
     return view('welcome');
 });
 
@@ -23,27 +24,37 @@ Route::get('/form', function () {
     return view('form');
 });
 
+Route::get('/Test', function () {
+    return view('test');
+});
+
+Route::get('/Table', function () {
+    return view('tableapi');
+});
+
+//Route::get('/Tablerecord', function () {
+    //return view('Tablerecord');
+//});
+
 Route::view('formData' ,'form');
 
-Route::post('/form1', [FormExample::class,'saveques']);
+Route::post('/form1', [FormExample::class,'saveuser']);
 Route::view('Tablerecord' ,'Tablerecord');
 
 Route::post('/Table', [FormExample::class,'show']);
 Route::get('/TableDelete', [FormExample::class,'DeleteBocha']);
 
 Route::view('/update' ,'update');
-Route::post('/Tableupdate', [FormExample::class,'update']);
+Route::post('/updateuser', [FormExample::class,'updateuser']);
 
-Route::view('/table' ,'table');
-Route::post('/tablerecord', [FormExample::class,'table']);
+Route::get('/AJAX', function () {
+    return view('Ajax');
+});
 
-Route::view('/tableapi' ,'tableapi');
-Route::get('/studentrecord', [FormExample::class,'studentrecord']);
 
-Route::view('/Ajax' ,'Ajax');
-Route::get('/Ajax', [AJAXController::class,'show']);
-
-Route::view('/AlertDemo' ,'Alerts');
+Route::get('/Alerts', function () {
+    return view('Alerts');
+});
 
 // sandip sir project db ctappdb Route //
 
@@ -57,4 +68,54 @@ Route::get('/subscription', function () {
     return view('renewsubscription');
 });
 
+
+Route::get('/PaginationTable', function () {
+    return view('pagination');
+});
+
+Route::get('/NewStudentRegistration', function () {
+    return view('newstudent');
+});
+Route::post('/newstudent', [FormExample::class,'Id']);
+
+Route::get('/ListofStudent', function () {
+    return view('liststudent');
+
+});
+
+Route::get('/norecores', [FormExample::class,'norecores']);
+
+Route::post('/updatestatus', [FormExample::class,'updatestatus']);
+
+Route::get('/CSVtoArray', function () {
+    return view('csvtoarray');
+});
+
+Route::post('/csvfile', [FormExample::class,'csvfile']);
+
+Route::get('/CSV', function () {
+    return view('csv');
+});
+
+Route::get('/ImageUpload', function () {
+    return view('imageupload');
+});
+
+Route::post('/imagesave', [FormExample::class,'store']);
+
+Route::get('/Login', function () {
+    return view('LoginPage');
+});
+
+Route::get('/UserHome', function () {
+    return view('home');
+});
+
+Route::group(['middleware'=>"web"],function()
+{
+    Route::post('/loginaction', [LoginController::class,'login']);
+
+    Route::get('/logoutaction', [LoginController::class,'logout']);
+
+});
 
