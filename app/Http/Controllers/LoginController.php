@@ -33,6 +33,11 @@ class LoginController extends Controller
             return Redirect('/UserHome');
            
         }
+        else
+        {
+          //echo'<script>alert("Invalid Username and Password")</script>';
+            return Redirect('/Login');
+        }
     }
 
   }

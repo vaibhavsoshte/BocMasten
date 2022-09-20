@@ -8,15 +8,15 @@
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     </head>
     <body>
-        <div class="container mt-4 col-md-8 pt-4 d-flex justify-content-center" style="border:1px solid #df3f3f;">
+        <div class="container mt-4 col-md-8 pt-4 d-flex justify-content-center" style="border: 1px solid purple; padding: 10px;">
         <form action="loginaction" name="myForm" method="post" onsubmit="return validateForm()">
             @csrf
             <!--User ID  input -->
             <div class ="col-md-12 d-flex justify-content-center">
             <div class="form-outline mb-4">
 
-              <input type="email" id="email" name="email" class="form-control" placeholder="User ID"/>
-    
+              <input type="email" id="email" name="email" class="form-control" placeholder="User ID" />
+              <p id="erroremail" style="color:red"></p>
             </div>
             </div>
           
@@ -25,7 +25,7 @@
             <div class="form-outline mb-4">
 
               <input type="password" id="pass" name="pass" class="form-control" placeholder="Password"/>
-            
+              <p id="errorpass" style="color:red"></p>
             </div>
             </div>
           
@@ -39,22 +39,37 @@
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
         <script type="text/javascript">
-         function validateForm() 
+        
+          function validateForm() 
          {
             let x = document.forms["myForm"]["email"].value;
             let y = document.forms["myForm"]["pass"].value;
             if (x == "") 
             {
-               alert("Email must be filled out");
+               //alert("Email must be filled out");
+               document.getElementById("erroremail").innerHTML= "*Email must be filled out*";
                return false;
             }
             if(y == "")
             {
-              alert("Password Must Be Required");
+              //alert("Password Must Be Required");
+              document.getElementById("errorpass").innerHTML= "*Password Must Be Required*";
               return false;
     
             }
-         }
+          }
+            $(document).ready(function(){
+            /*$("#email").click(function()
+             {
+               $("erroremail").hide();
+               return false;
+               console.log("hi");
+             });*/
+          $("#email").focusin(function(){
+           //$(this).css("background-color", "#FFFFCC");
+           $("erroremail").hide();
+           });
+           });   
         </script>   
     </body>
 </html>
