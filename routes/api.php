@@ -84,7 +84,7 @@ Route::post('/login', [LoginController::class,'login']);
 
 Route::get('/StoredProcedure', [DateController::class,'StoredProcedure']);
 
-
+Route::get('/userlist', [FormExample::class,'userlist']);
 
 
 

@@ -214,7 +214,7 @@ class FormExample extends Controller
       public static function paginationdata()
       {
          // $user = Employee::paginate(8);
-         $users = DB::table('user')->paginate(4);
+         $users = DB::table('users')->paginate(4);
          //return view('pagination', compact('users'));
          
           return $users;
@@ -346,10 +346,10 @@ class FormExample extends Controller
      public static function norecores()
      {
 
-       $norecores=DB::select("SELECT COUNT(id) AS id FROM `user`");
+       $norecores=DB::select("SELECT COUNT(id) AS id FROM `users`");
        
        $subval= $norecores[0]->id;
-       $page=Ceil($subval/4);
+       $page=Ceil($subval/3);
         
        return $page;
        //return $subval;
@@ -516,5 +516,10 @@ class FormExample extends Controller
     {
       echo "image is not Selected ";
     }
+  }
+  public function userlist(Request $request)
+  {
+    $prodx["data"]=DB::select("SELECT * FROM users LIMIT ? OFFSET ?",[$request->limits,$request->offset]);
+    return $prodx;
   }
 }

@@ -13,26 +13,9 @@
 </head>
 <body>
     <div class="container mt-5">
-        <table class="table table-bordered mb-5">
-            <thead>
-                <tr class="table-success">
-                    <th scope="col">ID</th>
-                    <th scope="col">Email Id</th>
-                    <th scope="col">Password</th>
-                    <th scope="col" colspan="2"> Operation</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach(FormExample::paginationdata() as $data)
-                <tr>
-                    <th scope="row">{{ $data->id }}</th>
-                    <td>{{ $data->email }}</td>
-                    <td>{{ $data->pass }}</td>
-                    <th scope="collapse=2"><button  class="btn btn-outline-secondary">Update</button>  <button  class="btn btn-outline-secondary">Delete</button></th>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+        <div id="usertb">
+           
+        </div>
         <div id="tablescroll">
 
         </div>
@@ -41,6 +24,40 @@
     </div>
 </body>
 <script>
+    calculatedentry=1;
+settotprods=1;
+function setCookie(name, value, daysToLive) {
+    // Encode value in order to escape semicolons, commas, and whitespace
+    var cookie = name + "=" + encodeURIComponent(value);
+    
+    if(typeof daysToLive === "number") {
+        /* Sets the max-age attribute so that the cookie expires
+        after the specified number of days */
+        cookie += "; max-age=" + (daysToLive*24*60*60);
+        
+        document.cookie = cookie;
+    }
+}
+function getCookie(name) {
+    // Split cookie string and get all individual name=value pairs in an array
+    var cookieArr = document.cookie.split(";");
+    
+    // Loop through the array elements
+    for(var i = 0; i < cookieArr.length; i++) {
+        var cookiePair = cookieArr[i].split("=");
+        
+        /* Removing whitespace at the beginning of the cookie name
+        and compare it with the given string */
+        if(name == cookiePair[0].trim()) {
+            // Decode the cookie value and return
+            return decodeURIComponent(cookiePair[1]);
+        }
+    }
+    
+    // Return null if not found
+    return null;
+}    
+
    function prevpage() {
     console.log("Previous Page In");
     var pageno = getCookie("productpageindex");
@@ -139,5 +156,91 @@ function nextpage() {
         }
     });
 });
+
+
+function switchentries() {
+    var x = calculatedentry;
+    
+    var updurl='/api/userlist?limits=4&offset='+x;
+
+    $.ajax({
+                url: updurl,
+                type: 'get',
+                success: function(responsen) {
+
+                 console.log(responsen);
+                    var len = 0;
+                                if(responsen['data'] != null){
+                                    len = responsen['data'].length;
+                                }
+
+                                var dataox="<table class=\"table mt-5 table-bordered\" > <thead><tr><th>ID</th><th>Email ID</th><th>Password</th><th>Operation</th></tr></thead>";
+                                dataox+="<tbody>";
+                                var srno=1;
+                                if(len > 0){
+                                    for(var i=0; i<len; i++){
+                                    var productsku = responsen['data'][i].id;
+                                    var productname = responsen['data'][i].email;
+                                    var productpacksize = responsen['data'][i].pass;
+                                    var offeramt = responsen['data'][i].statu;
+                                 
+
+                                    dataox+="<tr><td>"+srno+"</td><td>"+productsku+"</td><td>"+productname+"</td><td>"+productpacksize+"</td><td>"+offeramt+"</td><td>"+expiryinterval+"</td>";
+                                    dataox+="<td><div id=\"frmdt\">  <a href=\"/editproductsku?id="+productsku+"\"><button type=\"button\" class=\"btn btn-primary form-control\" style='margin:1px;' ><i class=\"fas fa-edit\"></i>Edit</button></a>    <button type=\"button\" class=\"btn btn-danger form-control\" style='margin:1px;' onclick='deletesku(\""+productsku+"\")'><i class=\"far fa-trash-alt\"></i>Delete</button>       </div></td></tr>";
+                                    srno=srno+1;
+                                    }
+                                }                                                    
+                                dataox+="</tbody>";
+                    dataox+="</table>";
+
+                                console.log(dataox);
+                    $("#usertb").html(dataox);
+
+                }
+            });
+
+    
+}
+
+           $.ajax({
+                url: '/paginationdata?limits=4&offset=0',
+                type: 'get',
+                success: function(responsen){
+
+                    console.log(responsen);
+                    var len = 0;
+                                if(responsen['data'] != null){
+                                    len = responsen['data'].length;
+                                }
+
+                                var dataox="<table class=\"table mt-5 table-bordered\" > <thead><tr><th>Sr. No</th><th>User ID</th><th>Email ID</th><th>Passworld</th><th>Status</th><th scope=\"colspan=3\">Action on Product</th></tr></thead>";
+                                dataox+="<tbody>";
+                                var srno=1;
+                                if(len > 0){
+                                    for(var i=0; i<len; i++){
+                                    var id = responsen['data'][i].id;
+                                    var email = responsen['data'][i].email;
+                                    var pass = responsen['data'][i].pass;
+                                    var statu= responsen['data'][i].statu;
+                                    
+
+                                    dataox+="<tr><td>"+srno+"</td><td>"+id+"</td><td>"+email+"</td><td>"+pass+"</td><td>"+statu+"</td>";
+                                    dataox+="<td><div id=\"frmdt\">  <a href=\"/editproductsku?id="+id+"\"><button type=\"button\" class=\"btn btn-primary form-control\" style='margin:1px;' ><i class=\"fas fa-edit\"></i>Edit</button></a>    <button type=\"button\" class=\"btn btn-danger form-control\" style='margin:1px;' onclick='deletesku(\""+id+"\")'><i class=\"far fa-trash-alt\"></i>Delete</button>       </div></td></tr>";
+                                    srno=srno+1;
+                                    }
+                                } 
+
+                                dataox+="</tbody>";
+                               dataox+="</table>";
+
+                                console.log(dataox);
+                    $("#usertb").html(dataox);
+
+                }
+                });
+
+           /* else {
+                $("#tabledata").html("<h4>No data found</h4>");
+            } */
 </script>
 </html>

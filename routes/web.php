@@ -73,6 +73,10 @@ Route::get('/PaginationTable', function () {
     return view('pagination');
 });
 
+/*Route::get('/PaginationTable', function () {
+    return view('userslist');
+}); */
+
 Route::get('/NewStudentRegistration', function () {
     return view('newstudent');
 });
@@ -84,6 +88,10 @@ Route::get('/ListofStudent', function () {
 });
 
 Route::get('/norecores', [FormExample::class,'norecores']);
+
+Route::get('/userlist', [FormExample::class,'userlist']); 
+
+Route::get('/paginationdata', [FormExample::class,'paginationdata']);
 
 Route::post('/updatestatus', [FormExample::class,'updatestatus']);
 
