@@ -65,12 +65,12 @@ function getCookie(name) {
     if(pageno != "" && parseInt(pageno)>1) {
         pagexo=parseInt(pageno)-1;
         //alert("Welcome again, " + pageno);
-        calculatedentry=(pagexo*5)+1;
+        calculatedentry=(pagexo*4);
         setCookie("productpageindex", pagexo, 30);
         switchentries();
     } else {
-        pagexo=1;
-        if(pagexo != 0 && pagexo != null) {
+        pagexo=0;
+        if(pagexo >= 0 && pagexo != null) {
             // Set cookie using our custom function
             setCookie("productpageindex", pagexo, 30);
             calculatedentry=pagexo;
@@ -85,7 +85,7 @@ function nextpage() {
     if(pageno != ""  ) {
         pagexo=parseInt(pageno)+1;
         //alert("Welcome again, " + pageno);
-        calculatedentry=(pagexo*5)+1;
+        calculatedentry=(pagexo*4);
         setCookie("productpageindex", pagexo, 30);
         switchentries();
     } else {
@@ -101,10 +101,10 @@ function nextpage() {
 
 
 
-    function switchpage(whichpage) {
+function switchpage(whichpage) {
     if(whichpage!=1){
     console.log("Switching Pages with test "+whichpage);
-    calculatedentry=(whichpage*5)+1;
+    calculatedentry=((whichpage-1)*4);
     console.log("Calculated Page Value:"+calculatedentry);
     setCookie("productpageindex", whichpage, 30);
     switchentries();
@@ -112,7 +112,7 @@ function nextpage() {
     }
     else
     {
-        calculatedentry=1;
+        calculatedentry=0;
         console.log("Calculated Page Value:"+calculatedentry);
         setCookie("productpageindex", whichpage, 30);
         switchentries();
@@ -160,8 +160,8 @@ function nextpage() {
 
 function switchentries() {
     var x = calculatedentry;
-    
-    var updurl='/api/userlist?limits=4&offset='+x;
+     console.log(x);
+    var updurl='/userlist?limits=4&offset='+x;
 
     $.ajax({
                 url: updurl,
@@ -174,19 +174,20 @@ function switchentries() {
                                     len = responsen['data'].length;
                                 }
 
-                                var dataox="<table class=\"table mt-5 table-bordered\" > <thead><tr><th>ID</th><th>Email ID</th><th>Password</th><th>Operation</th></tr></thead>";
+                                //var dataox="<table class=\"table mt-5 table-bordered\" > <thead><tr><th>ID</th><th>Email ID</th><th>Password</th><th>Operation</th></tr></thead>";
+                                var dataox="<table class=\"table mt-5 table-bordered\" > <thead><tr><th>Sr. No</th><th>User ID</th><th>Email ID</th><th>Passworld</th><th>Status</th><th scope=\"colspan=3\">Action on User</th></tr></thead>";
                                 dataox+="<tbody>";
                                 var srno=1;
                                 if(len > 0){
                                     for(var i=0; i<len; i++){
-                                    var productsku = responsen['data'][i].id;
-                                    var productname = responsen['data'][i].email;
-                                    var productpacksize = responsen['data'][i].pass;
-                                    var offeramt = responsen['data'][i].statu;
+                                    var id = responsen['data'][i].id;
+                                    var email = responsen['data'][i].email;
+                                    var pass = responsen['data'][i].pass;
+                                    var statu = responsen['data'][i].statu;
                                  
 
-                                    dataox+="<tr><td>"+srno+"</td><td>"+productsku+"</td><td>"+productname+"</td><td>"+productpacksize+"</td><td>"+offeramt+"</td><td>"+expiryinterval+"</td>";
-                                    dataox+="<td><div id=\"frmdt\">  <a href=\"/editproductsku?id="+productsku+"\"><button type=\"button\" class=\"btn btn-primary form-control\" style='margin:1px;' ><i class=\"fas fa-edit\"></i>Edit</button></a>    <button type=\"button\" class=\"btn btn-danger form-control\" style='margin:1px;' onclick='deletesku(\""+productsku+"\")'><i class=\"far fa-trash-alt\"></i>Delete</button>       </div></td></tr>";
+                                    dataox+="<tr><td>"+srno+"</td><td>"+id+"</td><td>"+email+"</td><td>"+pass+"</td><td>"+statu+"</td>";
+                                    dataox+="<td><div id=\"frmdt\">  <a href=\"/editproductsku?id="+id+"\"><button type=\"button\" class=\"btn btn-primary form-control\" style='margin:1px;' ><i class=\"fas fa-edit\"></i>Edit</button></a>    <button type=\"button\" class=\"btn btn-danger form-control\" style='margin:1px;' onclick='deletesku(\""+id+"\")'><i class=\"far fa-trash-alt\"></i>Delete</button>       </div></td></tr>";
                                     srno=srno+1;
                                     }
                                 }                                                    
@@ -213,7 +214,7 @@ function switchentries() {
                                     len = responsen['data'].length;
                                 }
 
-                                var dataox="<table class=\"table mt-5 table-bordered\" > <thead><tr><th>Sr. No</th><th>User ID</th><th>Email ID</th><th>Passworld</th><th>Status</th><th scope=\"colspan=3\">Action on Product</th></tr></thead>";
+                                var dataox="<table class=\"table mt-5 table-bordered\" > <thead><tr><th>Sr. No</th><th>User ID</th><th>Email ID</th><th>Passworld</th><th>Status</th><th scope=\"colspan=3\">Action on User</th></tr></thead>";
                                 dataox+="<tbody>";
                                 var srno=1;
                                 if(len > 0){

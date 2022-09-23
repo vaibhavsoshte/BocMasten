@@ -73,9 +73,9 @@ Route::get('/PaginationTable', function () {
     return view('pagination');
 });
 
-/*Route::get('/PaginationTable', function () {
-    return view('userslist');
-}); */
+Route::get('/TablePagination', function () {
+    return view('tablepagination');
+}); 
 
 Route::get('/NewStudentRegistration', function () {
     return view('newstudent');

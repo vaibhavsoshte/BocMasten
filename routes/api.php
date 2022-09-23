@@ -6,6 +6,7 @@ use App\Http\Controllers\FormExample;
 use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\DateController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\StudentController;
 
 
 /*
@@ -87,6 +88,8 @@ Route::get('/StoredProcedure', [DateController::class,'StoredProcedure']);
 Route::get('/userlist', [FormExample::class,'userlist']);
 
 
+//student controller 
 
+Route::get('/fetchstudent', [StudentController::class,'fetchstudent']);
 
 
