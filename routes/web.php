@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FormExample;
 use App\Http\Controllers\AJAXController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\StudentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,9 +74,11 @@ Route::get('/PaginationTable', function () {
     return view('pagination');
 });
 
+/*
 Route::get('/TablePagination', function () {
     return view('tablepagination');
-}); 
+});
+*/ 
 
 Route::get('/NewStudentRegistration', function () {
     return view('newstudent');
@@ -86,6 +89,10 @@ Route::get('/ListofStudent', function () {
     return view('liststudent');
 
 });
+
+
+Route::get('/TablePagination', [StudentController::class,'fetchstudent']);
+
 
 Route::get('/norecores', [FormExample::class,'norecores']);
 
