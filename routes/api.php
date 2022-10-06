@@ -92,4 +92,8 @@ Route::get('/userlist', [FormExample::class,'userlist']);
 
 Route::get('/fetchstudent', [StudentController::class,'fetchstudent']);
 
+Route::get('/fetchstudentbranch', [StudentController::class,'fetchstudentbranch']);
+
+Route::get('/fetchbranch', [StudentController::class,'fetchbranch']);
+
 

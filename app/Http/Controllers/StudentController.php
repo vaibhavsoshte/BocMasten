@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\studentidtbl;
+use App\Models\branchtbl;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -20,5 +21,24 @@ class StudentController extends Controller
         return view('tablepagination',compact('users'));
        // return view('TablePagination')->with($data);
         //return $users;
+    }
+
+    //student attended 
+    public function fetchstudentbranch(Request $request)
+    {
+        $dtro=$request->post('branch');
+        //echo $dtro;
+        $results["data"] =studentidtbl::where('branch', '=', $dtro)->get();
+        return $results;
+
+    }
+   
+     //get all branch
+    public function fetchbranch()
+    {
+       
+        $result =branchtbl::all();
+        return $result;
+
     }
 }

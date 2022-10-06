@@ -90,6 +90,19 @@ Route::get('/ListofStudent', function () {
 
 });
 
+Route::get('/StudentAttended', function () {
+    return view('studentattended');
+
+});
+
+Route::post('/fetchstudentbranch', [StudentController::class,'fetchstudentbranch']);
+
+/*Route::get('/StudentAttended', function () {
+    return view('studentattended');
+
+});*/
+
+
 
 Route::get('/TablePagination', [StudentController::class,'fetchstudent']);
 
