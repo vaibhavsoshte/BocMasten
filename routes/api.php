@@ -96,4 +96,8 @@ Route::get('/fetchstudentbranch', [StudentController::class,'fetchstudentbranch'
 
 Route::get('/fetchbranch', [StudentController::class,'fetchbranch']);
 
+Route::get('/fetchuser', [StudentController::class,'fetchuser']);
+
+
+
 

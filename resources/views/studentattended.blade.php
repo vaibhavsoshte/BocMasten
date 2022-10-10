@@ -96,7 +96,9 @@
                                    
                                 }
                                   // console.log(len);
-                                var dataox="<table class=\"table mt-5 table-bordered\" > <thead><tr><th>Sr. No</th><th  scope=\"colspan=3\">Student Name</th><th>Registration No</th><th>branch</th><th scope=\"colspan=2\">Attended</th></tr></thead>";
+                                
+                                var dataox="<form id=\"studenttbl\" method=\"post\">";
+                                dataox+="<table class=\"table mt-5 table-bordered\" > <thead><tr><th>Sr. No</th><th>Registration No</th><th>Student Name</th><th scope=\"colspan=3\">branch</th><th scope=\"colspan=2\"> Mark Attended</th></tr></thead>";
                                 dataox+="<tbody>";
                                 var srno=1;
                                 if(len > 0){
@@ -107,15 +109,21 @@
                                     
                                     
 
-                                    dataox+="<tr><td>"+srno+"</td><td>"+studentname+"</td><td>"+registrationno+"</td><td>"+branch+"</td>";
-                                    dataox+="<td><div id=\"frmdt\">  <a href=\"/editproductsku?id="+registrationno+"\"><button type=\"button\" class=\"btn btn-primary form-control\" style='margin:1px;' ><i class=\"fas fa-edit\"></i>Edit</button></a>      <input class=\"form-check-input\" type=\"checkbox\" value=\"\" id=\"flexCheckIndeterminate\">   </div></td></tr>";
+                                    dataox+="<tr><td>"+srno+"</td><td>"+registrationno+"</td><td>"+studentname+"</td><td>"+branch+"</td>";
+                                    dataox+="<td><div id=\"frmdt\">  <input class=\"form-check-input\" type=\"radio\" value=\"1\" id=\"ptr"+registrationno+"\" name=\"ptr"+registrationno+"\">  <label class=\"radio\" for=\"flexCheckIndeterminate\"> Present </label>  <br> <br> <input class=\"form-check-input\" type=\"radio\" value=\"1\" id=\"ptr"+registrationno+"\" name=\"ptr"+registrationno+"\">  <label class=\"form-check-label\" for=\"flexCheckIndeterminate\"> Absent </label>  </div></td></tr>";
+                                    
                                     srno=srno+1;
                                     }
+                                    
                                 } 
+                               // dataox+="<tr> <div id=\"\submit\"> <button type=\"button\" class=\"btn btn-primary form-control\" style='margin:1px;' > Take Atteemded </button> </tr>";
                                 else{var dataox="no data found";}
 
                                 dataox+="</tbody>";
                                 dataox+="</table>";
+                                dataox+="<div> <button type=\"button\" class=\"btn btn-primary form-control\" style='margin:1px;' > Take Atteemded </button> </div>";
+                               
+                                dataox+="</form>";
 
                                // console.log(dataox);
                                 $("#studenttbl").html(dataox);
