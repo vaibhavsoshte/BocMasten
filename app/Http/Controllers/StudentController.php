@@ -41,4 +41,12 @@ class StudentController extends Controller
         return $result;
 
     }
+      
+      //laravel eloquent join()
+
+    public function fetchuser()
+    {
+       $user= DB::table('studentidtbls')->join('attendedtbl','studentidtbls.id','=','attendedtbl.stu_id')->get();
+       return $user;
+    }
 }
