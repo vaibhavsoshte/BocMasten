@@ -98,6 +98,8 @@ Route::get('/fetchbranch', [StudentController::class,'fetchbranch']);
 
 Route::get('/fetchuser', [StudentController::class,'fetchuser']);
 
+Route::post('/insertattended', [StudentController::class,'insertattended']);
+
 
 
 

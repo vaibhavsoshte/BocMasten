@@ -46,7 +46,38 @@ class StudentController extends Controller
 
     public function fetchuser()
     {
-       $user= DB::table('studentidtbls')->join('attendedtbl','studentidtbls.id','=','attendedtbl.stu_id')->get();
-       return $user;
+        return $user= DB::table('studentidtbls')
+                          ->join('attendedtbl','studentidtbls.id','=','attendedtbl.stu_id')
+                          ->get();
+       
+    }
+
+    public function insertattended(Request $request)
+    {
+        $dtro=$request->post("CustomField");
+        //dd($_REQUEST);
+        //echo $dtro;
+       
+        $bulla="ptr";
+        foreach ($_REQUEST as $parm => $value)  {
+            //echo "$parm = '$value'\n";
+            if(str_starts_with($parm,$bulla))
+            {
+                $no=substr($parm,3);
+               // echo "<br>";
+               // echo $value;
+
+               $insert=DB::statement("INSERT INTO attendedtbl(stu_id, attendeddate, remark) VALUES (?,?,?)",[$no,$dtro,$value]);
+              // echo "Done........";
+            }
+
+        }
+       if($insert==1)
+       {
+         return "Attended Done";
+       }
+       else{
+           return "Eerro in  Mark Attended ";
+       }
     }
 }
