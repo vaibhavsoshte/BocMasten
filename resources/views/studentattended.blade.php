@@ -25,6 +25,7 @@
                 <div class="card-body">
                   
                  <form id="studentcard" method="POST" enctype="multipart/form-data">
+                  @csrf
                     <div class="input-group mb-3">
                        
                         <select class="form-select" id="branch" name="branch" style="margin-left: 20%; margin-right:20%;">
@@ -49,9 +50,68 @@
 
         </div>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script>
+          function savatted()
+          {
+            event.preventDefault();
+
+// Get form
+// var file = fileInput.files[0];
+var form = $("#bocha")[0];
+
+// Create an FormData object 
+var data1 = new FormData(form);
+
+//console.log(data1);
+
+// If you want to add an extra field for the FormData
+
+var date = $('#date').val();
+data1.append("CustomField", date);
+
+// disabled the submit button
+$("#addmetadata").prop("disabled", true);
+
+$.ajaxSetup({
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+      });
+
+$.ajax({
+  type: "POST",
+  enctype: 'multipart/form-data',
+  url: "/api/insertattended",
+  data: data1,
+  processData: false,
+  contentType: false,
+  cache: false,
+  timeout: 600000,
+  success: function (responsen) {
+
+    
+      //console.log("SUCCESS : ", responsen);
+      alert(responsen); 
+      window.location.href = "/StudentAttended";  
+              
+  },
+  error: function (e) {
+
+      // $("#result").text(e.responseText);
+      //console.log("ERROR : ", e);
+      $("#addmetadata").prop("disabled", false);
+      alert(e.responseText);
+    
+
+  }
+});
+          }
+        </script>
 
         <script type="text/javascript">
-            {
+            
+              $(document).ready(function () {
+
                $("#submit").click(function (event) {
    
                //stop submit the form, we will post it manually.
@@ -88,7 +148,7 @@
                    success: function (responsen) {
    
                      
-                       console.log("SUCCESS : ", responsen);
+                     //  console.log("SUCCESS : ", responsen);
                      
                        var len = 0;
                                 if(responsen['data'] != null){
@@ -97,12 +157,13 @@
                                 }
                                   // console.log(len);
                                 
-                                var dataox="<form id=\"studenttbl\" method=\"post\">";
+                                var dataox="<form id=\"bocha\" method=\"post\" enctype=\"multipart/form-data\">";
                                 dataox+="<table class=\"table mt-5 table-bordered\" > <thead><tr><th>Sr. No</th><th>Registration No</th><th>Student Name</th><th scope=\"colspan=3\">branch</th><th scope=\"colspan=2\"> Mark Attended</th></tr></thead>";
                                 dataox+="<tbody>";
                                 var srno=1;
                                 if(len > 0){
                                     for(var i=0; i<len; i++){
+                                    var id = responsen['data'][i].id;
                                     var studentname = responsen['data'][i].studentname;
                                     var registrationno = responsen['data'][i].registrationno;
                                     var branch = responsen['data'][i].branch;
@@ -110,7 +171,7 @@
                                     
 
                                     dataox+="<tr><td>"+srno+"</td><td>"+registrationno+"</td><td>"+studentname+"</td><td>"+branch+"</td>";
-                                    dataox+="<td><div id=\"frmdt\">  <input class=\"form-check-input\" type=\"radio\" value=\"1\" id=\"ptr"+registrationno+"\" name=\"ptr"+registrationno+"\">  <label class=\"radio\" for=\"flexCheckIndeterminate\"> Present </label>  <br> <br> <input class=\"form-check-input\" type=\"radio\" value=\"1\" id=\"ptr"+registrationno+"\" name=\"ptr"+registrationno+"\">  <label class=\"form-check-label\" for=\"flexCheckIndeterminate\"> Absent </label>  </div></td></tr>";
+                                    dataox+="<td><div id=\"frmdt\">  <input class=\"form-check-input\" type=\"radio\" value=\"Present\" id=\"ptr"+id+"\" name=\"ptr"+id+"\">  <label class=\"radio\" for=\"flexCheckIndeterminate\"> Present </label>  <br> <br> <input class=\"form-check-input\" type=\"radio\"  value=\"Absent\" id=\"ptr"+id+"\" name=\"ptr"+id+"\">  <label class=\"form-check-label\" for=\"flexCheckIndeterminate\"> Absent </label>  </div></td></tr>";
                                     
                                     srno=srno+1;
                                     }
@@ -121,11 +182,11 @@
 
                                 dataox+="</tbody>";
                                 dataox+="</table>";
-                                dataox+="<div> <button type=\"button\" class=\"btn btn-primary form-control\" style='margin:1px;' > Take Atteemded </button> </div>";
+                                dataox+="<div> <button type=\"button\" id=\"attenddt\" name=\"attenddt\" onclick='savatted()' class=\"btn btn-primary form-control\" style='margin:1px;' > Take Atteemded </button> </div>";
                                
                                 dataox+="</form>";
 
-                               // console.log(dataox);
+                                //console.log(dataox);
                                 $("#studenttbl").html(dataox);
                                
                    },
@@ -140,10 +201,69 @@
                    }
                });
    
-           });
-           
-          }
-           </script>
-    </body> 
+           }); //-------------
+
+           $("#attenddt").click(function (event) {
+   
+            //stop submit the form, we will post it manually.
+            event.preventDefault();
+
+            // Get form
+            // var file = fileInput.files[0];
+            var form = $("#bocha")[0];
+
+            // Create an FormData object 
+            var data1 = new FormData(form);
+
+            console.log(data1);
+            
+            // If you want to add an extra field for the FormData
+            data.append("CustomField", "This is some extra data, testing");
+
+            // disabled the submit button
+            $("#addmetadata").prop("disabled", true);
+
+            $.ajaxSetup({
+                    headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                  });
+
+          $.ajax({
+              type: "POST",
+              enctype: 'multipart/form-data',
+              url: "",
+              data: data,
+              processData: false,
+              contentType: false,
+              cache: false,
+              timeout: 600000,
+              success: function (responsen) {
+
+                
+                 // console.log("SUCCESS : ", responsen);   
+                          
+              },
+              error: function (e) {
+
+                  // $("#result").text(e.responseText);
+                  console.log("ERROR : ", e);
+                  $("#addmetadata").prop("disabled", false);
+                  // alert(e.responseText);
+                
+
+              }
+          });
+
+
+
+
+
+
+        }); 
+    });    
+  
+</script>
+</body> 
 </html>
 
