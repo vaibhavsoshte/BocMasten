@@ -59,25 +59,45 @@ class StudentController extends Controller
         //echo $dtro;
        
         $bulla="ptr";
-        foreach ($_REQUEST as $parm => $value)  {
-            //echo "$parm = '$value'\n";
-            if(str_starts_with($parm,$bulla))
-            {
-                $no=substr($parm,3);
-               // echo "<br>";
-               // echo $value;
-
-               $insert=DB::statement("INSERT INTO attendedtbl(stu_id, attendeddate, remark) VALUES (?,?,?)",[$no,$dtro,$value]);
-              // echo "Done........";
+        $count=0;
+        $absent=0;
+        try
+         {
+            foreach ($_REQUEST as $parm => $value)  {
+                //echo "$parm = '$value'\n";
+                if(str_starts_with($parm,$bulla))
+                {
+                    $no=substr($parm,3);
+                   // echo "<br>";
+                   // echo $value;
+                   if($value=='Present')
+                   $count=$count+1;
+                   if($value=='Absent')
+                   $absent=$absent+1;
+    
+                   $insert=DB::statement("INSERT INTO attendedtbl(stu_id, attendeddate, remark) VALUES (?,?,?)",[$no,$dtro,$value]);
+                  // echo "Done........";
+                }
+    
             }
+           
+           if($insert==1)
+           {
+             return "Attended Done \n\n  $count Student Present \n\n $absent Student Absent";
+             // echo "$count Student Present";
+             // echo "\n";
+              //echo "$absent Student Absent";
+           }
+           else
+           {
+               return "Eerro in  Mark Attended ";
+           } 
 
-        }
-       if($insert==1)
-       {
-         return "Attended Done";
-       }
-       else{
-           return "Eerro in  Mark Attended ";
-       }
+         }
+         catch(\Illuminate\Database\QueryException $ex) {
+            //echo 'Message: ' .$ex->getMessage();
+            echo 'Message: Attended already Taken ';
+          }
+       
     }
 }
