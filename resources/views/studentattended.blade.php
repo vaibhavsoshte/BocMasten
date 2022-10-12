@@ -17,6 +17,9 @@
    </head>
     <body>
       @csrf
+      <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" type="button" href="/AttendedRecord">Check Attendance</a>
+      </nav><br>
         <div class="box">
          <h1 style="text-align: center; font-family: Times New Roman, Times, serif;">Student Attended </h1>
         </div>
@@ -55,57 +58,57 @@
           {
             event.preventDefault();
 
-// Get form
-// var file = fileInput.files[0];
-var form = $("#bocha")[0];
+          // Get form
+          // var file = fileInput.files[0];
+          var form = $("#bocha")[0];
 
-// Create an FormData object 
-var data1 = new FormData(form);
+          // Create an FormData object 
+          var data1 = new FormData(form);
 
-//console.log(data1);
+          //console.log(data1);
 
-// If you want to add an extra field for the FormData
+          // If you want to add an extra field for the FormData
 
-var date = $('#date').val();
-data1.append("CustomField", date);
+          var date = $('#date').val();
+          data1.append("CustomField", date);
 
-// disabled the submit button
-$("#addmetadata").prop("disabled", true);
+          // disabled the submit button
+          $("#addmetadata").prop("disabled", true);
 
-$.ajaxSetup({
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-      });
+          $.ajaxSetup({
+                  headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  }
+                });
 
-$.ajax({
-  type: "POST",
-  enctype: 'multipart/form-data',
-  url: "/api/insertattended",
-  data: data1,
-  processData: false,
-  contentType: false,
-  cache: false,
-  timeout: 600000,
-  success: function (responsen) {
+          $.ajax({
+            type: "POST",
+            enctype: 'multipart/form-data',
+            url: "/api/insertattended",
+            data: data1,
+            processData: false,
+            contentType: false,
+            cache: false,
+            timeout: 600000,
+            success: function (responsen) {
 
-    
-      //console.log("SUCCESS : ", responsen);
-      alert(responsen); 
-      window.location.href = "/StudentAttended";  
               
-  },
-  error: function (e) {
+                //console.log("SUCCESS : ", responsen);
+                alert(responsen); 
+                window.location.href = "/StudentAttended";  
+                        
+            },
+            error: function (e) {
 
-      // $("#result").text(e.responseText);
-      //console.log("ERROR : ", e);
-      $("#addmetadata").prop("disabled", false);
-      alert(e.responseText);
-    
+                // $("#result").text(e.responseText);
+                //console.log("ERROR : ", e);
+                $("#addmetadata").prop("disabled", false);
+                alert(e.responseText);
+              
 
-  }
-});
-          }
+            }
+          });
+        }
         </script>
 
         <script type="text/javascript">
@@ -254,12 +257,6 @@ $.ajax({
 
               }
           });
-
-
-
-
-
-
         }); 
     });    
   

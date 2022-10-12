@@ -95,6 +95,11 @@ Route::get('/StudentAttended', function () {
 
 });
 
+Route::get('/AttendedRecord', function () {
+    return view('checkrecord');
+
+});
+
 Route::post('/fetchstudentbranch', [StudentController::class,'fetchstudentbranch']);
 
 /*Route::get('/StudentAttended', function () {
