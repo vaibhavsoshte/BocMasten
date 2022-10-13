@@ -18,7 +18,8 @@
     <body>
       @csrf
       <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" type="button" href="/AttendedRecord">Check Attendance</a>
+        <a class="navbar-brand" type="button" href="/AttendedRecord">Check Attendance by Student</a>
+        <a class="navbar-brand" type="button" href="/RecordByBranch">Check Attendance by Branch</a>
       </nav><br>
         <div class="box">
          <h1 style="text-align: center; font-family: Times New Roman, Times, serif;">Student Attended </h1>

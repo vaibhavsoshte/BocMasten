@@ -145,7 +145,6 @@ class StudentController extends Controller
         echo "<table border=5 class=\"table \ border bg-light\">";
         echo "<tr>
         <th class=\"thead-dark\"> Sr.No</th>
-        <th>Student Name</th>
         <th> Date Of Attended </th>
         <th>Remark</th>
        
@@ -158,7 +157,6 @@ class StudentController extends Controller
            $i++;
            echo "<tr>";
                echo "<td>".$i."</td>";
-               echo "<td>".$data->studentname."</td>";
                echo "<td>".$data->attendeddate."</td>" ;
                echo "<td>".$data->remark."</td>";
                
@@ -193,6 +191,71 @@ class StudentController extends Controller
         </tr>";
         echo "<td>".$data->studentname."</td><br>";
         echo "<td>".$data->registrationno."</td><br>";
-        echo "<td>".$percentage."</td>";
+        echo "<td>".$percentage."</td>"; 
+    }
+
+    public function recordbybranch(Request $request)
+    {
+        $branch=$request->post('branch');
+        $date=$request->post('date');
+
+        $recordbybranch=DB::select("SELECT * FROM studentidtbls s,attendedtbl a WHERE s.branch=? && a.attendeddate=? and s.id=a.stu_id",[$branch,$date]);
+        //return $recordbybranch;
+        $i=0;
+        $count=0;
+        $Absent=0;
+        echo "<table table-bordered class=\"table \ border bg-light\">";
+        echo "<thead class=\"thead-dark\">";
+        echo "<tr>
+        <th class=\"thead-dark\"> SR.No</th>
+        <th> STUDENT NAME </th>
+        <th> REGISTRATION NO  </th>
+        <th>REMARK</th>
+        </thead>
+        </tr>";
+
+        foreach($recordbybranch as $data)
+        {
+           $i++;
+           echo "<tr>";
+               echo "<td>".$i."</td>";
+               echo "<td>".$data->studentname."</td>" ;
+               echo "<td>".$data->registrationno."</td>" ;
+               echo "<td>".$data->remark."</td>";
+               
+               //echo "<td>".$data[4]."</td>" ;
+    
+           echo "</tr>";
+          if($data->remark=='Present')
+          {
+            $count=$count+1;
+            //echo $count;
+          }
+          if($data->remark=='Absent')
+          {
+            $Absent=$Absent+1;
+          }
+        }
+          if($i==0)
+          {
+              echo "<tr>";
+              echo "<td>NO Record Found</td>";
+              echo "</tr>";
+          }
+          echo "</table>";
+
+          echo "<table border=5 class=\"table \ border bg-light\">";
+          echo "<tr>
+         
+         
+          <th> Number of Student Present </th>
+          <th> Number of Student Absent </th>
+         
+          </tr>";
+         
+          echo "<td>".$count."</td><br>";
+          echo "<td>".$Absent."</td>"; 
+          
+       
     }
 }
