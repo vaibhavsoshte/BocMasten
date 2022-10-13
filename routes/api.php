@@ -100,6 +100,10 @@ Route::get('/fetchuser', [StudentController::class,'fetchuser']);
 
 Route::post('/insertattended', [StudentController::class,'insertattended']);
 
+Route::post('/searchstudent', [StudentController::class,'searchstudent']);
+
+Route::post('/attendedrecord', [StudentController::class,'attendedrecord']);
+
 
 
 
