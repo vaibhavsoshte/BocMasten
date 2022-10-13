@@ -6,6 +6,7 @@ use App\Models\branchtbl;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class StudentController extends Controller
 {
@@ -99,5 +100,99 @@ class StudentController extends Controller
             echo 'Message: Attended already Taken ';
           }
        
+    }
+
+     //orm query with like with specify
+
+    public function searchstudent(Request $request)
+    {
+        try
+        {
+            $txtname=$request->post('txtname');
+            //$student = studentidtbl::where('studentname', '=',$txtname)->get();
+            $student = studentidtbl::Where('studentname', 'like', '%' . $txtname . '%')->get(); 
+            //return $student;
+            $bull=0;
+            echo "<ul class=\"list-group\">";
+            foreach($student as $stu)
+            {
+                //$name=$stu->studentname;
+                //$no=$stu->registrationno;
+                
+                echo "<li class=\"list-group-item\" id=\".$stu->registrationno.\">".$stu->studentname."</li>";
+               $bull++;
+            }
+            if($bull==0)
+            {
+                echo "<li class=\"list-group-item\">No  Student Name Found</li>";
+            }
+
+            echo "</ul>";
+
+        }
+        catch(\Illuminate\Database\QueryException $ex) 
+        {
+            echo 'Message: ' .$ex->getMessage();
+        }
+    }
+
+    public function attendedrecord(Request $request)
+    {
+        
+        $attendedrecord=DB::select("SELECT * FROM studentidtbls s ,attendedtbl a WHERE s.studentname=? && a.attendeddate BETWEEN ? AND ?  AND s.id=a.stu_id;",[$request->txtname,$request->startdate,$request->enddate]);
+        //return $attendedrecord;
+
+        echo "<table border=5 class=\"table \ border bg-light\">";
+        echo "<tr>
+        <th class=\"thead-dark\"> Sr.No</th>
+        <th>Student Name</th>
+        <th> Date Of Attended </th>
+        <th>Remark</th>
+       
+        </tr>";
+        $i=0;
+        $count=0;
+        $percentage=0;
+        foreach($attendedrecord as $data)
+        {
+           $i++;
+           echo "<tr>";
+               echo "<td>".$i."</td>";
+               echo "<td>".$data->studentname."</td>";
+               echo "<td>".$data->attendeddate."</td>" ;
+               echo "<td>".$data->remark."</td>";
+               
+               //echo "<td>".$data[4]."</td>" ;
+    
+           echo "</tr>";
+          if($data->remark=='Present')
+          {
+            $count=$count+1;
+            //echo $count;
+          }
+          
+        }
+        $percentage= $count*100/$i;
+       
+        //echo $percentage;
+        if($i==0)
+        {
+            echo "<tr>";
+            echo "<td>NO Record Found</td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+
+        echo "<table border=5 class=\"table \ border bg-light\">";
+        echo "<tr>
+       
+        <th>Student Name</th>
+        <th> Registration No </th>
+        <th>Total Attended (%)</th>
+       
+        </tr>";
+        echo "<td>".$data->studentname."</td><br>";
+        echo "<td>".$data->registrationno."</td><br>";
+        echo "<td>".$percentage."</td>";
     }
 }
