@@ -104,6 +104,8 @@ Route::post('/searchstudent', [StudentController::class,'searchstudent']);
 
 Route::post('/attendedrecord', [StudentController::class,'attendedrecord']);
 
+Route::post('/recordbybranch', [StudentController::class,'recordbybranch']);
+
 
 
 

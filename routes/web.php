@@ -95,6 +95,11 @@ Route::get('/StudentAttended', function () {
 
 });
 
+Route::get('/RecordByBranch', function () {
+    return view('recordbranch');
+
+});
+
 Route::get('/AttendedRecord', function () {
     return view('checkrecord');
 
