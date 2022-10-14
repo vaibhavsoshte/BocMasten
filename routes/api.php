@@ -7,6 +7,7 @@ use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\DateController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\FessController;
 
 
 /*
@@ -107,5 +108,8 @@ Route::post('/attendedrecord', [StudentController::class,'attendedrecord']);
 Route::post('/recordbybranch', [StudentController::class,'recordbybranch']);
 
 
+//fess controller
 
+Route::post('/fetchfess', [FessController::class,'fetchfess']);
 
+Route::post('/',[FessController::class,'']);

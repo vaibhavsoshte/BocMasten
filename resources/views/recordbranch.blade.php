@@ -20,7 +20,7 @@
     @csrf
     <div class="container mt-1">
         <div class="top" style="background-color: aqua">
-         <h1 align="center"> Attendance Record By Branch</h1>
+         <h1 align="center" style="position: fixed top: 0"> Attendance Record By Branch</h1>
         </div>
           <div class="card" style="width:60%; margin-left:20%;">
               <div class="card-body">
