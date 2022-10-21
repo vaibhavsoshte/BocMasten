@@ -25,6 +25,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// FormExample
+
  Route::get('/user', [FormExample::class,'show']);
 
  Route::get('/subscription', [FormExample::class,'fetchAllsubscription']);
@@ -71,6 +73,8 @@ Route::get('/save', [FormExample::class,'save']);
 
 Route::post('/moveuploadedfile', [FormExample::class,'moveuploadedfile']);
 
+Route::get('/userlist', [FormExample::class,'userlist']);
+
 
 //date controller
 
@@ -86,7 +90,7 @@ Route::post('/login', [LoginController::class,'login']);
 
 Route::get('/StoredProcedure', [DateController::class,'StoredProcedure']);
 
-Route::get('/userlist', [FormExample::class,'userlist']);
+
 
 
 //student controller 
@@ -112,4 +116,4 @@ Route::post('/recordbybranch', [StudentController::class,'recordbybranch']);
 
 Route::post('/fetchfess', [FessController::class,'fetchfess']);
 
-Route::post('/',[FessController::class,'']);
+Route::post('/fetchfess',[FessController::class,'fetchfess']);

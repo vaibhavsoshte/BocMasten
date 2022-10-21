@@ -15,4 +15,12 @@ class FessController extends Controller
         $fetchfess=feestbl::all();
         return $fetchfess;
     }
+
+    //fetch all branch
+
+    public function fetchallbranch()
+    {
+        $fetchallbranch=DB::select("SELECT * FROM `fesstypetbl`");
+        return $fetchallbranch;
+    }
 }

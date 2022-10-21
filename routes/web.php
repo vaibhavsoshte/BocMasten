@@ -105,6 +105,19 @@ Route::get('/AttendedRecord', function () {
 
 });
 
+Route::get('/FessRecord', function () {
+    return view('fessrecord');
+
+});
+
+Route::get('/FessPayment', function () {
+    return view('payment');
+
+});
+
+Route::get('/SKJC-Home', function () {
+    return view('skjc');
+});
 Route::post('/fetchstudentbranch', [StudentController::class,'fetchstudentbranch']);
 
 /*Route::get('/StudentAttended', function () {

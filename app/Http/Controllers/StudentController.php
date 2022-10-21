@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\studentidtbl;
-use App\Models\branchtbl;
 
+use App\Models\branchtbl;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
