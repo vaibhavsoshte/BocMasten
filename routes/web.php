@@ -115,6 +115,10 @@ Route::get('/FessPayment', function () {
 
 });
 
+Route::get('/Navbar-Demo', function () {
+    return view('navbar');
+});
+
 Route::get('/SKJC-Home', function () {
     return view('skjc');
 });
