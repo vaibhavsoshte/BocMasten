@@ -8,7 +8,7 @@ use App\Http\Controllers\DateController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\FessController;
-
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -117,3 +117,7 @@ Route::post('/recordbybranch', [StudentController::class,'recordbybranch']);
 Route::post('/fetchfess', [FessController::class,'fetchfess']);
 
 Route::post('/fetchfess',[FessController::class,'fetchfess']);
+
+//UserController
+
+Route::get('/parsingjson', [UserController::class,'parsingjson']);
