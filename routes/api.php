@@ -121,3 +121,9 @@ Route::post('/fetchfess',[FessController::class,'fetchfess']);
 //UserController
 
 Route::get('/parsingjson', [UserController::class,'parsingjson']);
+
+// Route::get('/myPDF', function () {
+//     return view('myPDF');
+// });
+
+Route::get('/myPDF', [UserController::class,'parsingjson']);

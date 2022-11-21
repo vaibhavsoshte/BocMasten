@@ -5,6 +5,7 @@ use App\Http\Controllers\FormExample;
 use App\Http\Controllers\AJAXController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -169,6 +170,12 @@ Route::get('/Login', function () {
 Route::get('/UserHome', function () {
     return view('home');
 });
+
+Route::get('/Mypdfpage', function () {
+      return view('myPDF');
+ });
+
+Route::get('/myPDF', [UserController::class,'parsingjson']);
 
 Route::group(['middleware'=>"web"],function()
 {
