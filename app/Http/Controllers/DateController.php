@@ -93,5 +93,30 @@ class DateController extends Controller
       GO;");
       return $StoredProcedure;
     }
+
+
+    public function array()
+    {
+
+        $arr=array(1,2,3,4,5,6,7,8,9);
+        $i=0;
+
+        // foreach($arr as $value)
+        // {
+        //     echo $value ."<br>";
+        // }
+
+        // while($i++<count($arr))
+        // echo $arr[$i-1]."<br>";  
+        
+        $max = 0;
+      foreach ( $array as $item ) {
+      if ( $max<$item ) 
+      {
+        $max = $item;
+      }
+}
+
+    } 
   
 }
