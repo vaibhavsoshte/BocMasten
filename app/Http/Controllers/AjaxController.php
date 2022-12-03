@@ -91,7 +91,7 @@ class AjaxController extends Controller
     }
 
 
-       public function coronaapi()
+       public function coronaapi(Request $request)
        {
       
 
@@ -115,6 +115,7 @@ class AjaxController extends Controller
         $response = curl_exec($curl);
         $err = curl_error($curl);
         $count=0;
+        
 
         curl_close($curl);
         echo '<table border=1px solid black;>';
@@ -140,23 +141,108 @@ class AjaxController extends Controller
               // echo $key."<br>";
               // echo $corona["countries_stat"];
 
-              if($key=="countries_stat"){
+              if($key=="countries_stat")
+              {
 
                 foreach($corona as $key1 => $corona1)
                 {
-                   //echo  $corona1['country_name']."\n";
+                   $country_name=  $corona1['country_name'];
+                   $cases= $corona1['cases'];
+                   $total_recovered= $corona1['total_recovered'];
+                   $deaths= $corona1['deaths'];
                    //print_r($corona1);
-                   $count++;
-                   echo "<tr>";
-                   echo  "<td>".$count."</td>";
-                   echo "<td>".$corona1['country_name']."</td>" ;
-                   echo "<td>".$corona1['cases']."</td>";
-                   echo "<td>".$corona1['total_recovered']."</td>";
-                   echo "<td>".$corona1['deaths']."</td>";
-                   echo "</tr>";  
+                  
+
+                   if($corona1['country_name']==$request->name)
+                   {
+                        $count++;
+                        echo "<tr>";
+                        echo  "<td>".$count."</td>";
+                        echo "<td>".$country_name."</td>";
+                        echo "<td>".$cases."</td>";
+                        echo "<td>".$total_recovered."</td>";
+                        echo "<td>".$deaths."</td>";
+                        echo "</tr>";  
+                   } 
+                    else
+                    {
+                    // echo "<tr>";
+                   //echo "<td  colspan='5'>"."There is no such Country Found"."</td>";
+                  // echo "<tr>";  
+                     //echo "No Recored Find";
+                    } 
+                }
+               
+              }
+           }
+          // echo "<td  colspan='5'>"."There is no such Country Found"."</td>";
+           echo "</table>"; 
+        }
+       }
+
+
+
+       public function coronaapiinsert()
+       {
+      
+
+        $curl = curl_init();
+        
+        curl_setopt_array($curl, [
+            CURLOPT_URL => "https://corona-virus-world-and-india-data.p.rapidapi.com/api",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => [
+                "X-RapidAPI-Host: corona-virus-world-and-india-data.p.rapidapi.com",
+                "X-RapidAPI-Key: 63a7db4447mshf6b5a23d83f5aedp1418fcjsn048661fbf321"
+            ],
+        ]);
+        
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+        $count=0;
+        
+        curl_close($curl);
+        
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } else 
+        {
+           // echo $response;
+           $obj = json_decode($response,true);
+
+           //var_dump($obj);
+
+           foreach($obj as $key => $corona)
+           {
+              // echo $key."<br>";
+              // echo $corona["countries_stat"];
+
+              if($key=="countries_stat")
+              {
+
+                foreach($corona as $key1 => $corona1)
+                {
+                   $country_name=  $corona1['country_name'];
+                   $cases= $corona1['cases'];
+                   $total_recovered= $corona1['total_recovered'];
+                   $deaths= $corona1['deaths'];
+                  
+                  $insertapidata=DB::statement("INSERT INTO `coronadatatbl`(country_name, cases, total_recovered, deaths) VALUES (?,?,?,?)",[$country_name,$cases,$total_recovered,$deaths]);
+
+                }
+                if(isset($insertapidata))
+                {
+                    echo "Data Inserting ";
                 }
               }
            }
+          // echo "<td  colspan='5'>"."There is no such Country Found"."</td>";
            echo "</table>"; 
         }
        }
