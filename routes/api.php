@@ -127,3 +127,9 @@ Route::get('/parsingjson', [UserController::class,'parsingjson']);
 // });
 
 Route::get('/myPDF', [UserController::class,'parsingjson']);
+
+Route::get('/apiparsing', [AjaxController::class,'apiparsing']);
+
+Route::get('/array', [DateController::class,'array']);
+
+Route::get('/coronaapi', [AjaxController::class,'coronaapi']);

@@ -22,8 +22,8 @@ class UserController extends Controller
          $path = storage_path()."/airports.json"; 
 
          $json = json_decode(file_get_contents($path), true); 
-       
-        echo '<table border=1px solid black;>';
+         var_dump($json);
+       /* echo '<table border=1px solid black;>';
         echo '<tr>';
        // echo '<th>Sr No</th>';
         echo '<th>Code</th>';
@@ -47,7 +47,7 @@ class UserController extends Controller
            $table ="</table>"; 
           //echo "Total No of Airport:".$count;
            $pdf = PDF::loadView('myPDF',compact('json','count'));
-          return $pdf->download('Airport.pdf');
+          return $pdf->download('Airport.pdf'); */
     }
 
 
