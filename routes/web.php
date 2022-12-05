@@ -134,7 +134,9 @@ Route::post('/fetchstudentbranch', [StudentController::class,'fetchstudentbranch
 
 });*/
 
-
+Route::get('/RcordByCountry', function () {
+    return view('coronalistbycountry');
+});
 
 Route::get('/TablePagination', [StudentController::class,'fetchstudent']);
 

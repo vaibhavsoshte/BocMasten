@@ -132,6 +132,8 @@ Route::get('/apiparsing', [AjaxController::class,'apiparsing']);
 
 Route::get('/array', [DateController::class,'array']);
 
-Route::get('/coronaapi', [AjaxController::class,'coronaapi']);
+Route::post('/coronaapi', [AjaxController::class,'coronaapi']);
 
 Route::get('/coronaapiinsert', [AjaxController::class,'coronaapiinsert']);
+
+Route::get('/fetchallcountry', [AjaxController::class,'fetchallcountry']);

@@ -118,7 +118,7 @@ class AjaxController extends Controller
         
 
         curl_close($curl);
-        echo '<table border=1px solid black;>';
+        echo '<table  class="table" border=1px solid black;>';
         echo '<tr>';
         echo '<th>Sr No</th>';
         echo '<th>Country Name</th>';
@@ -153,7 +153,7 @@ class AjaxController extends Controller
                    //print_r($corona1);
                   
 
-                   if($corona1['country_name']==$request->name)
+                   if($corona1['country_name']==$request->country)
                    {
                         $count++;
                         echo "<tr>";
@@ -245,5 +245,12 @@ class AjaxController extends Controller
           // echo "<td  colspan='5'>"."There is no such Country Found"."</td>";
            echo "</table>"; 
         }
+       }
+
+
+       public function fetchallcountry()
+       {
+           $fetchallcountry=DB::select("SELECT country_name FROM coronadatatbl");
+           return $fetchallcountry;
        }
 }
