@@ -9,6 +9,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\FessController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -137,3 +138,7 @@ Route::post('/coronaapi', [AjaxController::class,'coronaapi']);
 Route::get('/coronaapiinsert', [AjaxController::class,'coronaapiinsert']);
 
 Route::get('/fetchallcountry', [AjaxController::class,'fetchallcountry']);
+
+Route::get('/Exceptions', [TestController::class,'Exceptions']);
+
+Route::post('/studentinsert', [TestController::class,'studentinsert']);
