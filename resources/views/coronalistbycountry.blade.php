@@ -18,8 +18,8 @@
 <body>
     <div class="container mt-2">
         <div class="row container justify center" style="padding: 0;">
-          <div class="col-lg-8 shadow bg-white rounded"style="margin-left:100px; padding:0;">
-           <div class="card">
+          <div class="col-lg-8  justify-content:center">
+           <div class="card shadow bg-white rounded" style="padding: 0%; margin:0%;">
                <div class="card-header" style="background-color: rgb(181, 165, 238)">
                    <h5  align="center">Search Record By Country</h5>
                </div>
@@ -27,7 +27,7 @@
                  <form id="countrydata" method="POST" enctype="multipart/form-data">
                    @csrf
                      <div class="input-group mb-6">
-                         <select class="form-select" id="country" name="country" style="margin-left: 5%; margin-right:5%;">
+                         <select class="form-select" id="country" name="country">
                            <option selected disabled>Choose branch...</option>
                            @foreach (AjaxController::fetchallcountry() as $bocha )
                            <option value={{$bocha->country_name}}>{{$bocha->country_name}}</option>

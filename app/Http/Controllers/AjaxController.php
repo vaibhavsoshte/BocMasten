@@ -250,7 +250,21 @@ class AjaxController extends Controller
 
        public function fetchallcountry()
        {
-           $fetchallcountry=DB::select("SELECT country_name FROM coronadatatbl");
-           return $fetchallcountry;
+        // $conn= \DB::connection()->getPDO();
+        // dd($conn);
+        // dump('Database connected: ' . \DB::connection()->getDatabaseName());
+        $conn=\DB::connection()->getDatabaseName();
+        echo $conn;
+       
+            try
+            {
+             $fetchallcountry=DB::select("SELECT country_name FROM coronadatatbl");
+             return $fetchallcountry;
+            }
+            catch(QueryException $ex){ 
+             dd($ex->getMessage()); 
+             //echo "Error".$ex;
+           }
+       
        }
 }
