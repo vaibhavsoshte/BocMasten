@@ -10,6 +10,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\FessController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TestController;
+use App\Http\Controllers\PatternsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -142,3 +143,24 @@ Route::get('/fetchallcountry', [AjaxController::class,'fetchallcountry']);
 Route::get('/Exceptions', [TestController::class,'Exceptions']);
 
 Route::post('/studentinsert', [TestController::class,'studentinsert']);
+
+//PatternsController
+
+Route::get('/pyramid', [PatternsController::class,'pyramid']);
+
+Route::get('/triangle', [PatternsController::class,'triangle']);
+
+Route::get('/Swapping', [PatternsController::class,'Swapping']);
+
+Route::get('/arraypattern', [PatternsController::class,'arraypattern']);
+
+Route::get('/arraylength', [PatternsController::class,'arraylength']);
+
+Route::get('/arraycheckelement', [PatternsController::class,'arraycheckelement']);
+
+Route::get('/greatestValue', [PatternsController::class,'greatestValue']);
+
+Route::get('/sumofarray', [PatternsController::class,'sumofarray']);
+
+Route::get('/reversestring', [PatternsController::class,'reversestring']);
+

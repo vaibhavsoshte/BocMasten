@@ -177,6 +177,11 @@ Route::get('/Mypdfpage', function () {
       return view('myPDF');
  });
 
+ Route::get('/JavaScriptApi', function () {
+    return view('javascriptapi');
+});
+
+
 Route::get('/myPDF', [UserController::class,'parsingjson']);
 
 Route::group(['middleware'=>"web"],function()
