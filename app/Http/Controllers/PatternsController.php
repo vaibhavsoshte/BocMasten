@@ -115,18 +115,18 @@ class PatternsController extends Controller
       $i=0;
       $count=0;
 
-      // foreach($arr as $a)
-      // {
-      //    $count=$count+1;
-      // }
-
-      // echo $count;
-
-      while ($arr[$i]!='')
-        {  
+      foreach($arr as $a)
+      {
          $count=$count+1;
-        }
-        echo $count;
+      }
+
+      echo $count;
+
+      // while ($arr[$i]!='')
+      //   {  
+      //    $count=$count+1;
+      //   }
+      //   echo $count;
     }
 
     public function arraycheckelement(Request $request)

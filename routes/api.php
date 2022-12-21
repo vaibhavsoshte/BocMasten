@@ -164,3 +164,9 @@ Route::get('/sumofarray', [PatternsController::class,'sumofarray']);
 
 Route::get('/reversestring', [PatternsController::class,'reversestring']);
 
+
+//usercontroller
+
+Route::get('/user', [UserController::class,'user']);
+
+
