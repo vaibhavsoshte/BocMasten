@@ -198,4 +198,17 @@ class PatternsController extends Controller
          echo $name[$i];
       }
     }
+
+    public function tableno(Request $request)
+    {
+       $no=$request->no;
+       $temp=$no;
+
+       for($i=0; $i<=9;$i++)
+       {
+          echo "<tr>".$temp."\n"."</tr>";
+          $temp=$no+$temp;
+         
+       }
+    }
 }

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use PDF;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
@@ -20,11 +20,12 @@ class UserController extends Controller
 
     public function user()
     {
-      $user=DB::select("SELECT * FROM users");
+      $user=DB::select("SELECT * FROM `users`");
       //return $user;
 
-      $pdf = PDF::loadView('UserPDF',compact('user'));
+      $pdf = PDF::loadView('userpdf',compact('user'));
       return $pdf->download('Users.pdf'); 
+      //return $pdf->stream('Users.pdf',array('Attachment'=>0));
     }
 
    //pdf generation
