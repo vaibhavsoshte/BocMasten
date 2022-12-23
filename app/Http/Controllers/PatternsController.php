@@ -203,12 +203,15 @@ class PatternsController extends Controller
     {
        $no=$request->no;
        $temp=$no;
-
+      echo "<table border=1px solid black;>";
        for($i=0; $i<=9;$i++)
        {
-          echo "<tr>".$temp."\n"."</tr>";
+          echo "<tr>";
+          echo "<td>".$temp."\n"."</td>";
+          echo "</tr>";
           $temp=$no+$temp;
          
        }
+       echo "</table>";
     }
 }
