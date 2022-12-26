@@ -166,6 +166,20 @@ Route::get('/reversestring', [PatternsController::class,'reversestring']);
 
 Route::get('/tableno', [PatternsController::class,'tableno']);
 
+Route::get('/arraytrial', [PatternsController::class,'arraytrial']);
+
+Route::get('/binaryserach', [PatternsController::class,'binaryserach']);
+
+Route::get('/arraycheck', [PatternsController::class,'arraycheck']);
+
+Route::get('/error', [PatternsController::class,'error']);
+
+Route::get('/factorialno', [PatternsController::class,'factorialno']);
+
+Route::get('/Occurring', [PatternsController::class,'Occurring']);
+
+
+
 
 
 //usercontroller

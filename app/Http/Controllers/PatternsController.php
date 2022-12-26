@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Exceptions\DivisionByZeroExceptionx;
+use \Exception;
 
 class PatternsController extends Controller
 {
@@ -11,7 +13,7 @@ class PatternsController extends Controller
     public function pyramid()
     {
        //$i=0;
-       $j=0;
+       ///$j=0;
        
        for($i=1;$i<=5;$i++)
        {
@@ -214,4 +216,183 @@ class PatternsController extends Controller
        }
        echo "</table>";
     }
+
+    public function arraytrial(Request $request)
+    {
+      $a=array(1,2,3,5,7,11,41);
+      $no=$request->no;
+
+      $b=count($a);
+     // echo $b;
+      for($i=0;$i<=$b-1;$i++)
+      {
+         if($a[$i]==$no)
+         {
+            echo "Found At Position->".$i;
+         }
+        
+      }
+
+      
+      //echo "not Found";
+      //echo "<h3>". $a[5]."</h3>";
+    }
+
+    public function binaryserach(Request $request)
+    {
+      //   $arr=array(1,2,3,4,6,9);
+      //   $low=0;
+      //   $max=count($arr);
+      //   $mid=0;
+      //   $x=3;
+      //   $mid=$low+$max/2;
+      //  // echo $mid;
+
+      // for($i=$max-1;$i>=0;$i--)
+      // {
+      //    echo $arr[$i]."\n";
+      // }
+
+       $a="DAD";
+       
+       $b=strlen($a);
+       $d=strrev($a); //strrev
+
+      //  echo $a[0];
+      //  echo "<br>";
+      //  echo $a[$b-1];
+      //  echo "<br>";
+      for($i=0;$i<$b;$i++)
+      {
+           if($i%2==0)
+           {
+              echo "Evene letter---->".$a[$i];
+              
+              echo "<br>";
+           }
+      }
+
+      //  if($a/2)
+      //  {
+      //   // echo "String Ending With Same Letter";
+      //     echo "String are same";
+      //  }
+      //  else
+      //  {
+      //    //echo "String Ending With Different Letter";
+      //      echo "String are not same";
+      //  }
+
+
+    }
+
+    public function arraycheck()
+    {
+      $hackers = array ('Alan Kay', 'Peter Norvig', 'Linus Trovalds', 'Larry Page');
+
+      print_r($hackers);
+
+      // Search
+      $pos = array_search('Linus Trovalds', $hackers);
+
+      // array_seearch returns false if an element is not found
+     // so we need to do a strict check here to make sure
+     if ($pos !== false) {
+       echo 'Linus Trovalds found at: ' . $pos;
+
+       // Remove from array
+      unset($hackers[$pos]);
+      }
+
+       print_r($hackers);
+    }
+
+    public function whilecount()
+    {
+      $arr=array(1,2,3,4,6,9);
+      $b=count($arr);
+      $i=0;
+      $count=0;
+
+      while($arr[$i]<=$b-1)
+      {
+         $count=$count+1;
+         //$i=$i+1; 
+      }
+      echo $count;
+
+    }
+
+    public function error()
+    {
+      $a=2;
+      $b=2;
+
+   
+      
+     if($b==0)
+     {
+        echo "Division not posible";
+     }
+     else
+     {
+         $div=$a/$b;
+         echo "Division Is:-".$div;
+     }
+
+    }
+
+    public function factorialno(Request $request)
+    {
+
+      $no=$request->no;
+      $factno=1;
+
+      for($i=$no;$i>=1;$i--)
+      {
+         $factno=$i*$factno;
+      }
+      
+      echo "Factorial of $no is =".$factno;
+
+    }
+
+
+    public function Occurring()
+    {
+      $arr=array(1,5,1,4,5,9,1,4);
+      $arrcount=[];
+      //$no=1;
+      date_default_timezone_set('Asia/Kolkata');
+     
+      // echo "<pre>";
+      //  print_r(array_count_values($arr));
+      // echo "</pre>";
+     foreach($arr as $val)
+     {
+         // if($arrcount[$val])
+         // {
+         //   //$arrcount=$arrcount+1;
+         //   $arrcount[$val]= $arrcount[$val]+1;
+
+         // }
+         // else
+         // {
+         //    $arrcount[$val]=1;
+         // }
+
+         echo $val."\n";
+     }
+        echo "<pre>";
+        //print_r($arrcount);
+        echo "</pre>";
+
+      //   echo "<br>";
+      //   echo "<br>";
+      //   echo date('d-m-Y');
+    }
+
+    
+
+
 }
