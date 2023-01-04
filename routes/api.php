@@ -178,6 +178,10 @@ Route::get('/factorialno', [PatternsController::class,'factorialno']);
 
 Route::get('/Occurring', [PatternsController::class,'Occurring']);
 
+Route::get('/stringOccurring', [PatternsController::class,'stringOccurring']);
+
+Route::get('/uniqustring', [PatternsController::class,'uniqustring']);
+
 
 
 
