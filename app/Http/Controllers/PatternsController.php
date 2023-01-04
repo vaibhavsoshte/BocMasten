@@ -361,6 +361,7 @@ class PatternsController extends Controller
     public function Occurring()
     {
       $arr=array(1,5,1,4,5,9,1,4);
+      $name="vaibhav";
       $arrcount=[];
       //$no=1;
       date_default_timezone_set('Asia/Kolkata');
@@ -368,31 +369,45 @@ class PatternsController extends Controller
       // echo "<pre>";
       //  print_r(array_count_values($arr));
       // echo "</pre>";
-     foreach($arr as $val)
-     {
-         // if($arrcount[$val])
-         // {
-         //   //$arrcount=$arrcount+1;
-         //   $arrcount[$val]= $arrcount[$val]+1;
-
-         // }
-         // else
-         // {
-         //    $arrcount[$val]=1;
-         // }
-
-         echo $val."\n";
-     }
-        echo "<pre>";
-        //print_r($arrcount);
-        echo "</pre>";
-
-      //   echo "<br>";
-      //   echo "<br>";
-      //   echo date('d-m-Y');
+     
     }
 
-    
+    public function stringOccurring()
+    {
+      $name="vaibhav";
+      $char=[];
+      $count=0;
 
+      // print_r(array_unique($name));
+      // for ($i = 0; $i < strlen($name); $i++)
+      // {
+      //    if($name[$i]==$char)
+      //    {
+      //         $count++;
+      //    }
+      // }
+      // echo $count;
+    }
+
+
+    public function uniqarray()
+    {
+     
+     $inputArray = array(1, 4, 2, 1, 6, 4, 9, 7, 2, 9);
+     $outputArray = array();
+
+     foreach($inputArray as $inputArrayItem) 
+     {
+       foreach($outputArray as $outputArrayItem) 
+       {
+        if($inputArrayItem == $outputArrayItem) 
+        {
+            continue 2;
+        }
+       }
+        $outputArray[] = $inputArrayItem;
+     }
+       print_r($outputArray);
+    }
 
 }
