@@ -37,6 +37,7 @@ class PatternsController extends Controller
          for ($i = 0; $i <$k; $i++)
          { 
             for($j=0;$j<($k-$i);$j++) {
+
                 echo "&nbsp";
             }
             for($x=0;$x<$i+1;$x++){
@@ -408,6 +409,75 @@ class PatternsController extends Controller
         $outputArray[] = $inputArrayItem;
      }
        print_r($outputArray);
+    }
+
+
+    public function squere()
+    {
+      
+      // $n=10;
+
+      // for($i=1;$i<=$n;$i++)
+      // {
+      //    echo "*";
+      //    echo "&nbsp";
+      // }
+      // for($j=$n-1; $j>=1; $j--)
+      // {
+      //    echo "<br>";
+      //    echo  "*";
+
+      // }
+
+      // // for($a=0; $a<=$n; $a++)
+      // // {
+      // //    echo "&nbsp";
+      // // }
+      // // for($b=$n-1; $j>=1; $j--)
+      // // {
+      // //    echo "<br>";
+      // //    echo "*";
+      // // }
+
+      // for($x=1;$x<=$n-1;$x++)
+      // {
+      //    echo "&nbsp";
+      //    echo "*";
+        
+      // }
+
+       // hollow square pattern
+    $size = 10;
+    for($i = 0; $i < $size; $i++) 
+    {
+        // print column
+        for($j = 0; $j < $size; $j++) 
+        {
+            // print only star in first and last row
+            if($i === 0 || $i === $size - 1) 
+            {
+                //echo "&nbsp;&nbsp;";
+                echo "*";
+               // echo "&nbsp;";
+            }
+            else 
+            {
+                // print star only in first and last position row
+                if($j === 0 || $j === $size - 1) 
+                {
+                    echo "*";
+                }
+                else 
+                {
+                    // use &nbsp; for space
+                    echo "&nbsp;&nbsp;";
+                }
+            }
+        }
+        echo "<br>";
+    }
+
+     
     }
 
 }

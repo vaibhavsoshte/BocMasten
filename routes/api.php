@@ -182,6 +182,8 @@ Route::get('/stringOccurring', [PatternsController::class,'stringOccurring']);
 
 Route::get('/uniqustring', [PatternsController::class,'uniqustring']);
 
+Route::get('/squere', [PatternsController::class,'squere']);
+
 
 
 
