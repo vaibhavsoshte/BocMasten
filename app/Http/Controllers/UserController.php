@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\DB;  
 
-class UserController extends Controller
+use App\Models\Employeetbl;
+
+class UserController extends Controller  
 {
     //fetch all user
     public function fetchUser()
@@ -112,5 +114,17 @@ class UserController extends Controller
        
        
   //    }
+
+
+
+    
+   public function emplist(Request $request)
+   {
+
+    $emp=Employeetbl::Paginate(4);
+
+    return $emp;
+
+   }
   
 }

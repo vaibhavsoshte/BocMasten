@@ -177,9 +177,9 @@ Route::get('/Mypdfpage', function () {
       return view('myPDF');
  });
 
-//  Route::get('/UserPDF', function () {
-//     return view('userpdf');
-// });
+ Route::get('/Event', function () {
+      return view('onclickEvent');
+ });
 
 
 Route::get('/myPDF', [UserController::class,'parsingjson']);

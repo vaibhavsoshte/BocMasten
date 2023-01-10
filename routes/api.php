@@ -114,6 +114,8 @@ Route::post('/attendedrecord', [StudentController::class,'attendedrecord']);
 Route::post('/recordbybranch', [StudentController::class,'recordbybranch']);
 
 
+
+
 //fess controller
 
 Route::post('/fetchfess', [FessController::class,'fetchfess']);
@@ -193,6 +195,8 @@ Route::get('/squere', [PatternsController::class,'squere']);
 Route::get('/user', [UserController::class,'user']);
 
 Route::get('/user', [UserController::class,'user']);
+
+Route::get('/emplist', [UserController::class,'emplist']);
 
 
 
