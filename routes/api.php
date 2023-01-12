@@ -217,5 +217,9 @@ Route::get('/fetchbyid', [ORMController::class,'fetchbyid']);
 
 Route::get('/updaterecored', [ORMController::class,'updaterecored']);
 
+Route::get('/deleterecored', [ORMController::class,'deleterecored']);
+
+Route::get('/insertrecored', [ORMController::class,'insertrecored']);
+
 
 

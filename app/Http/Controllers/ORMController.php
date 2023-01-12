@@ -64,7 +64,8 @@ class ORMController extends Controller
 
     public function fetchall()
     {
-        $emptbl=DB::table('Employeetbl')->get();
+        //$emptbl=DB::table('Employeetbl')->paginate(4);
+        $emptbl=DB::table('Employeetbl')->paginate()->get();
 
         return $emptbl;
     }
@@ -96,5 +97,37 @@ class ORMController extends Controller
              
               return response()->json(['success' => false,'message'=> 'Error in Updating.....']);
           }
+    }
+
+
+    //delete query
+
+    public function deleterecored(Request $request)
+    {
+          $emptbl=DB::table('Employeetbl')->where('id',$request->id)->delete();
+
+          if($emptbl==1){
+              
+            return response()->json(['success' => true,'message'=> 'Record Delete successfully']);
+           }
+          else{
+           
+            return response()->json(['success' => false,'message'=> 'Error in Deleting.....']);
+          }
+    }
+
+    public  function insertrecored(Request $request)
+    {
+       $values = array('empid' => $request->empid,'name' => $request->name,'sataus'=>$request->sataus,'designation'=>$request->designation);
+       $emptbl = DB::table('Employeetbl')->insert($values);
+
+       if($emptbl==1){
+              
+        return response()->json(['success' => true,'message'=> 'Record Add successfully']);
+       }
+      else{
+       
+        return response()->json(['success' => false,'message'=> 'Error in Adding Recored.....']);
+      }
     }
 }
