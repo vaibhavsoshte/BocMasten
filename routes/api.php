@@ -11,6 +11,8 @@ use App\Http\Controllers\FessController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\PatternsController;
+use App\Http\Controllers\ORMController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -198,5 +200,19 @@ Route::get('/user', [UserController::class,'user']);
 
 Route::get('/emplist', [UserController::class,'emplist']);
 
+
+//ORMController
+
+Route::get('/join', [ORMController::class,'join']);
+
+Route::get('/leftJoins', [ORMController::class,'leftJoins']);
+
+Route::get('/rightJoins', [ORMController::class,'rightJoins']);
+
+//Route::get('/fullJoins', [ORMController::class,'fullJoins']);
+
+Route::get('/fetchall', [ORMController::class,'fetchall']);
+
+Route::get('/fetchbyid', [ORMController::class,'fetchbyid']);
 
 
