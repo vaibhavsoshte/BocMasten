@@ -79,5 +79,22 @@ class ORMController extends Controller
         return $emptbl;
     }
 
-    //
+    //update query
+
+    public function updaterecored(Request $request)
+    {
+       $emptbl=DB::table('Employeetbl')
+                   ->where('id',$request->id)
+                   ->update(['sataus' => $request->sataus ,'designation'=>$request->designation]);
+
+                
+          if($emptbl==1){
+              
+              return response()->json(['success' => true,'message'=> 'Record Update successfully']);
+          }
+          else{
+             
+              return response()->json(['success' => false,'message'=> 'Error in Updating.....']);
+          }
+    }
 }
