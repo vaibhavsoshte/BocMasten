@@ -39,6 +39,16 @@ class DemoCron extends Command
     {
         //return 0;
 
-        \Log::info("Cron is working fine!");
+        //\Log::info("Cron is working fine!");
+
+       echo $str = "Hi Here is Vaibhav";
+
+       //echo $str;
+
+      // $event=DB::insert("INSERT INTO `Eventtbl`(`eventname`) VALUES ('[value-2]')");
+        
+   
+
+
     }
 }

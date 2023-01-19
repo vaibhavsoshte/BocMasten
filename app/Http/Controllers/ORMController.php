@@ -154,9 +154,9 @@ class ORMController extends Controller
     public  function having()
     {
         $users = DB::table('property_info')
-                //->groupBy('pricing')
-                //->having('pricing', '<', 500000.00)
-                ->where('pricing', '<', 500000.00)
+                //->groupBy('architectural_style')
+                //->having('architectural_style', '=', 'Bungalow')
+                 ->where('pricing', '=', 500000.00)
                 ->get();
 
                 return $users;
