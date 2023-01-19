@@ -130,4 +130,35 @@ class ORMController extends Controller
         return response()->json(['success' => false,'message'=> 'Error in Adding Recored.....']);
       }
     }
+
+    public function ordering()
+    {
+
+        $query = DB::table('studenttbl')->get();
+
+        return $query;
+
+    }
+
+
+    public function limitoffset()
+    {
+        $users = DB::table('users')
+                ->offset(10)
+                ->limit(10)   //paginate  //limit //  
+                ->get();
+
+                return $users;
+    }
+
+    public  function having()
+    {
+        $users = DB::table('property_info')
+                //->groupBy('pricing')
+                //->having('pricing', '<', 500000.00)
+                ->where('pricing', '<', 500000.00)
+                ->get();
+
+                return $users;
+    }
 }

@@ -221,5 +221,11 @@ Route::get('/deleterecored', [ORMController::class,'deleterecored']);
 
 Route::get('/insertrecored', [ORMController::class,'insertrecored']);
 
+Route::get('/limitoffset', [ORMController::class,'limitoffset']);
+
+Route::get('/ordering', [ORMController::class,'ordering']);
+
+Route::get('/having', [ORMController::class,'having']);
+
 
 
