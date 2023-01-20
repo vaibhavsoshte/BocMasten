@@ -200,6 +200,8 @@ Route::get('/user', [UserController::class,'user']);
 
 Route::get('/emplist', [UserController::class,'emplist']);
 
+Route::get('/eventpdf', [UserController::class,'eventpdf']);
+
 
 //ORMController
 

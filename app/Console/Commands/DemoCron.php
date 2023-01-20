@@ -46,16 +46,19 @@ class DemoCron extends Command
 
        //echo "Hi Here is Vaibhav";
 
-        $str="VA-1";
+       date_default_timezone_set("Asia/Calcutta"); 
 
-       $event=DB::insert("INSERT INTO `Eventtbl`(`eventname`) VALUES (?)",[$str]);
+        $str=date("dmyhis");
+        $date=date("d-m-y h:i:s");
+
+       $event=DB::insert("INSERT INTO `Eventtbl`(`eventunqid`,`eventdate`) VALUES (?,?)",[$str,$date]);
 
        if($event==1)
        {
           \Log::info("Event Generated ");  
        }
         
-   
+        //$eventlist=DB::select();
 
 
     }

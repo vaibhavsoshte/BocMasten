@@ -126,5 +126,35 @@ class UserController extends Controller
     return $emp;
 
    }
+
+
+   public function eventpdf()
+   {
+      $eventpdf=DB::table('Eventtbl')->get();
+      //$i=0;
+      $pdf = PDF::loadView('eventlist',compact('eventpdf'));
+      return $pdf->download('Event.pdf'); 
+      // echo '<table border=1px solid black;>';
+      // echo '<tr>';
+      // echo '<th>Sr NO</th>';
+      // echo '<th>Event ID</th>';
+      // echo '<th>Event NO</th>';
+      // echo '<th>Event Date</th>';
+      // echo '</tr>'; 
+      
+      // foreach ($eventpdf as $data)
+      // {
+      //   $i++;
+
+      //         echo "<tr>";
+      //         echo  "<td>".$i."</td>";
+      //         echo  "<td>".$data->eventid."</td>";
+      //         echo "<td>".$data->eventunqid."</td>";
+      //         echo "<td>".$data->eventdate."</td>";
+      //         echo "</tr>";  
+         
+      // }
+      // echo "</table>"; 
+   }
   
 }

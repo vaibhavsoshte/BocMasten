@@ -184,6 +184,8 @@ Route::get('/Mypdfpage', function () {
 
 Route::get('/myPDF', [UserController::class,'parsingjson']);
 
+Route::get('/eventlist', [UserController::class,'eventpdf']);
+
 Route::get('/UserPDF', [UserController::class,'user']);
 
 Route::group(['middleware'=>"web"],function()
