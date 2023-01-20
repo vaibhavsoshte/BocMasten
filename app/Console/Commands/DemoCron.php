@@ -2,7 +2,10 @@
 
 namespace App\Console\Commands;
 
+
+use Illuminate\Support\Facades\DB;
 use Illuminate\Console\Command;
+
 
 class DemoCron extends Command
 {
@@ -11,7 +14,7 @@ class DemoCron extends Command
      *
      * @var string
      */
-    protected $signature = 'command:name';
+    protected $signature = 'bocha:tanla';
 
     /**
      * The console command description.
@@ -41,11 +44,16 @@ class DemoCron extends Command
 
         //\Log::info("Cron is working fine!");
 
-       echo $str = "Hi Here is Vaibhav";
+       //echo "Hi Here is Vaibhav";
 
-       //echo $str;
+        $str="VA-1";
 
-      // $event=DB::insert("INSERT INTO `Eventtbl`(`eventname`) VALUES ('[value-2]')");
+       $event=DB::insert("INSERT INTO `Eventtbl`(`eventname`) VALUES (?)",[$str]);
+
+       if($event==1)
+       {
+          \Log::info("Event Generated ");  
+       }
         
    
 
