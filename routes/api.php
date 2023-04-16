@@ -200,6 +200,8 @@ Route::get('/user', [UserController::class,'user']);
 
 Route::get('/emplist', [UserController::class,'emplist']);
 
+Route::get('/eventpdf', [UserController::class,'eventpdf']);
+
 
 //ORMController
 
@@ -225,7 +227,9 @@ Route::get('/limitoffset', [ORMController::class,'limitoffset']);
 
 Route::get('/ordering', [ORMController::class,'ordering']);
 
-Route::get('/having', [ORMController::class,'having']);
+Route::get('/having', [ORMController::class,'having']); 
+
+Route::get('/arrattest', [ORMController::class,'arrattest']);
 
 
 

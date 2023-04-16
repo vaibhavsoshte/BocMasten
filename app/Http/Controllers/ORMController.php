@@ -7,6 +7,21 @@ use Illuminate\Support\Facades\DB;
 
 class ORMController extends Controller
 {
+
+    //static function
+
+   public function activtylog()
+   {
+    
+    date_default_timezone_set("Asia/Calcutta");  
+    $user_id = "vaibhav";
+    $time = date('Y-m-d H:i:s');
+    
+    $values = array('user_id' => $user_id,'time'=> $time,'activtyname'=>$activtyname);
+    $activtylog=DB::table('useractivtylog')->insert($values);
+
+   }
+
     //INNER JOIN 
 
     public function join()
@@ -153,6 +168,10 @@ class ORMController extends Controller
 
     public  function having()
     {
+        $activtyname = "property_info";
+        $this->activtylog($activtyname);
+        $this->activtylog();
+
         $users = DB::table('property_info')
                 //->groupBy('architectural_style')
                 //->having('architectural_style', '=', 'Bungalow')
@@ -160,5 +179,19 @@ class ORMController extends Controller
                 ->get();
 
                 return $users;
+    }
+
+    public function arrattest()
+    {
+        $arr = array(1,2,3,4,5,2,5,3);
+        // $a=2;
+        for($i=0;$i<=count($arr);$i++)
+        {
+            if($arr[$i]==5)
+            unset($arr[$i]);
+        }
+        
+
+        return $arr;
     }
 }
