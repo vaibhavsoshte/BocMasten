@@ -49,9 +49,10 @@ class DemoCron extends Command
        date_default_timezone_set("Asia/Calcutta"); 
 
         $str=date("dmyhis");
-        $date=date("d-m-y h:i:s");
+        $date=date("d-m-y");
+        $time=date("h:i:s");
 
-       $event=DB::insert("INSERT INTO `Eventtbl`(`eventunqid`,`eventdate`) VALUES (?,?)",[$str,$date]);
+       $event=DB::insert("INSERT INTO `Eventtbl`(`eventunqid`,`eventdate`,`eventtime`) VALUES (?,?,?)",[$str,$date,$time]);
 
        if($event==1)
        {

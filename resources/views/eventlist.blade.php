@@ -15,6 +15,7 @@
                     <th scope="col" style="border:1px solid #000; text-align: center;padding: 4px;">Event ID</th>
                     <th scope="col" style="border:1px solid #000; text-align: center;padding: 4px;">Event NO</th>
                     <th scope="col" style="border:1px solid #000; text-align: center;padding: 4px;">Event Date</th>
+                    <th scope="col" style="border:1px solid #000; text-align: center;padding: 4px;">Event Time</th>
                     
                 </tr>
             </thead>
@@ -28,6 +29,7 @@
                     <td scope="col" style="border:1px solid #000; text-align: center;padding: 4px;">{{ $dx->eventid }}</td>
                     <td scope="col" style="border:1px solid #000; text-align: center;padding: 4px;">{{ $dx->eventunqid }}</td>
                     <td scope="col" style="border:1px solid #000; text-align: center;padding: 4px;">{{ $dx->eventdate }}</td>
+                    <td scope="col" style="border:1px solid #000; text-align: center;padding: 4px;">{{ $dx->eventtime }}</td>
                     
                 </tr>
                 

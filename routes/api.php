@@ -227,7 +227,9 @@ Route::get('/limitoffset', [ORMController::class,'limitoffset']);
 
 Route::get('/ordering', [ORMController::class,'ordering']);
 
-Route::get('/having', [ORMController::class,'having']);
+Route::get('/having', [ORMController::class,'having']); 
+
+Route::get('/arrattest', [ORMController::class,'arrattest']);
 
 
 
